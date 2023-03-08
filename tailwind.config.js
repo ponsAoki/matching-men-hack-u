@@ -5,7 +5,18 @@ module.exports = {
     "src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "background-color": "#faeee7",
+        "highlight-color": "#ff8ba7",
+        "secondary-color": "#ffc6c7",
+        "tertiary-color": "#c3f0ca",
+      },
+      fontFamily: {
+        "caveat": ["Caveat", "cursive"],
+        "zen": ["Zen Maru Gothic", "sans-serif"]
+      }
+    },
   },
   plugins: [],
 };

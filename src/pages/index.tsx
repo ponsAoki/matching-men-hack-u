@@ -1,11 +1,10 @@
-import { Main } from "@/components/pages/Main";
-import { useAuth } from "@/hooks/useAuth";
+import { HeaderLine } from "@/components/pages/Header";
 
 const Home = () => {
-  const user = useAuth();
-  if (!user?.uid) return <p>loading...</p>
   return (
-    <Main />
-  )
-  }
+    <div className="bg-background-color h-screen">
+      <HeaderLine />
+    </div>
+  );
+};
 export default Home;
