@@ -8,21 +8,21 @@ export const Recruit = () => {
           <h3 className=" font-zen font-regular text-1xl lg:text-3xl ml-10">
             募集一覧
           </h3>
-          <div className="flex items-center">
+          <div className="flex items-center mr-10">
             <button className="bg-white hover:bg-tertiary-color font-zen py-2 px-4 mr-2 text-lg rounded-2xl inline-flex items-center">
               新着順
             </button>
-            <button className="bg-white hover:bg-tertiary-color font-zen py-2 px-4 mr-10 text-lg rounded-2xl inline-flex items-center">
+            <button className="bg-white hover:bg-tertiary-color font-zen py-2 px-4 mr-2 text-lg rounded-2xl inline-flex items-center">
               募集中
             </button>
           </div>
         </div>
 
-        <div
-          className="grid mx-10 gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4"
-          data-hs-overlay="#one"
-        >
-          <div className="group relative mb-2 block h-100 border overflow-hidden rounded-3xl bg-white lg:mb-3">
+        <div className="grid mx-10 gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
+          <div
+            className="group relative mb-2 block h-100 border overflow-hidden rounded-3xl bg-white lg:mb-3"
+            data-hs-overlay="#one"
+          >
             <div className="flex justify-center object-cover object-center transition duration-200 group-hover:scale-110">
               <Image src="/avatar.gif" alt="" width={150} height={150} />
             </div>
@@ -60,7 +60,7 @@ export const Recruit = () => {
                 <button
                   type="button"
                   className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm"
-                  data-hs-overlay="#hs-vertically-centered-scrollable-modal"
+                  data-hs-overlay="#one"
                 >
                   <svg
                     className="w-3.5 h-3.5"

@@ -6,7 +6,7 @@ export const HeaderLine = () => {
       <header className="border-b pt-5 w-full">
         <div className="font-caveat mx-auto flex items-center justify-between">
           <p className="text-5xl pl-10">UNITE</p>
-          <div className="flex pr-10">
+          <div className="flex mr-[4%]">
             <Image src="/chat.gif" alt="Logo" width={90} height={90} />
             <Image src="/avatar.gif" alt="Logo" width={90} height={90} />
           </div>
