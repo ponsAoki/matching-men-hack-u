@@ -3,7 +3,7 @@ import Image from "next/image";
 export const HeaderLine = () => {
   return (
     <div className="mx-auto">
-      <header className="border-b pt-5 w-full">
+      <header className="border-b border-black/20 pt-5 w-full">
         <div className="font-caveat mx-auto flex items-center justify-between">
           <p className="text-5xl pl-10">UNITE</p>
           <div className="flex mr-[4%]">
