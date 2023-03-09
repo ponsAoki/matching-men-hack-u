@@ -1,14 +1,14 @@
-import { HeaderLine } from "@/components/elements/Home/Header";
-import { NavLine } from "@/components/elements/Home/NavLine";
-import { Recruit } from "@/components/elements/Home/Recruit";
+import { HeaderLine } from "@/components/elements/home/Header";
+import { NavLine } from "@/components/elements/home/NavLine";
+import { Recruit } from "@/components/elements/home/Recruit";
 
 const Home = () => {
   return (
-    <div className="bg-background-color h-screen">
+    <>
       <HeaderLine />
       <NavLine />
       <Recruit />
-    </div>
+    </>
   );
 };
 export default Home;
