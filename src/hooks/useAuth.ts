@@ -45,3 +45,6 @@ export const useAuth = (): UserStateType => {
 
   return user;
 };
+
+//リファクタ
+//今はmainでしか認証ができていないが認証に関連するコンポーネント単位でできるようにする。

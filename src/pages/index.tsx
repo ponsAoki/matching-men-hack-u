@@ -1,9 +1,11 @@
+import { Loading } from "@/components/pages/Loading";
 import { Main } from "@/components/pages/Main";
 import { useAuth } from "@/hooks/useAuth";
 
 const Home = () => {
   const user = useAuth();
-  if (!user?.uid) return <p>loading...</p>
+  if (!user?.uid) return <Loading />
+  
   return (
     <Main />
   )
