@@ -11,7 +11,7 @@ export const NavLine = () => {
           </Link>
           <div className="flex border-l ml-12 items-center">
             <input
-              className=" font-zen font-light text-1xl h-10 mx-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent"
+              className=" font-zen font-light text-1xl h-10 mx-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent focus:bg-white/50 hover:bg-white/50"
               type="text"
               placeholder="検索"
             />

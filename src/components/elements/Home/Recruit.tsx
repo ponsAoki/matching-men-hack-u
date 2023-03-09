@@ -9,17 +9,17 @@ export const Recruit = () => {
             募集一覧
           </h3>
           <div className="flex items-center">
-            <button className="bg-transparent hover:bg-tertiary-color font-zen py-2 px-4 mr-2 text-lg rounded inline-flex items-center">
+            <button className="bg-white hover:bg-tertiary-color font-zen py-2 px-4 mr-2 text-lg rounded-2xl inline-flex items-center">
               新着順
             </button>
-            <button className="bg-transparent hover:bg-tertiary-color font-zen py-2 px-4 mr-10 text-lg rounded inline-flex items-center">
+            <button className="bg-white hover:bg-tertiary-color font-zen py-2 px-4 mr-10 text-lg rounded-2xl inline-flex items-center">
               募集中
             </button>
           </div>
         </div>
 
-        <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
-          <div className="group relative mb-2 block h-100 border overflow-hidden rounded-lg bg-transparent lg:mb-3">
+        <div className="grid mx-10 gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="group relative mb-2 block h-100 border overflow-hidden rounded-3xl bg-white lg:mb-3">
             <div className="flex justify-center object-cover object-center transition duration-200 group-hover:scale-110">
               <Image src="/avatar.gif" alt="" width={150} height={150} />
             </div>
@@ -41,7 +41,7 @@ export const Recruit = () => {
               <p className="font-zen font-light">2023/03/08</p>
             </div>
           </div>
-          <div className="group relative mb-2 block h-100 border overflow-hidden rounded-lg bg-transparent lg:mb-3">
+          <div className="group relative mb-2 block h-100 border overflow-hidden rounded-3xl bg-white lg:mb-3">
             <div className="flex justify-center object-cover object-center transition duration-200 group-hover:scale-110">
               <Image src="/avatar.gif" alt="" width={150} height={150} />
             </div>

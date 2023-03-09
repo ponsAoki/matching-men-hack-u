@@ -1,6 +1,6 @@
-import { HeaderLine } from "@/components/elements/Header";
-import { NavLine } from "@/components/elements/NavLine";
-import { Recruit } from "@/components/elements/Recruit";
+import { HeaderLine } from "@/components/elements/Home/Header";
+import { NavLine } from "@/components/elements/Home/NavLine";
+import { Recruit } from "@/components/elements/Home/Recruit";
 
 const Home = () => {
   return (
