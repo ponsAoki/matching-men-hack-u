@@ -5,12 +5,13 @@ export type User = {
   age?: string;
   prefecture?: string;
   university?: string;
-  undergradute?: string;
+  graduateYear?: string;
   self_publicity?: string;
   career_vision?: string;
   position?: string;
   development_experience?: boolean;
   internship_experience?: boolean;
-}
+  github?: string;
+};
 
 //position, prefectureはcollectionとして管理する。
