@@ -1,6 +1,6 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
-type PlaneInputProps = {
+type PlainInputProps = {
   labelText: string;
   inputType?: string;
   placeholder?: string;
@@ -8,13 +8,13 @@ type PlaneInputProps = {
   registerLabel?: string;
 };
 
-export const PlaneInput = ({
+export const PlainInput = ({
   labelText,
   inputType = "text",
   placeholder = "",
   register,
   registerLabel,
-}: PlaneInputProps): JSX.Element => {
+}: PlainInputProps): JSX.Element => {
   return (
     <div className="flex flex-col gap-6 text-lg">
       <label htmlFor="nameInput">{labelText}</label>

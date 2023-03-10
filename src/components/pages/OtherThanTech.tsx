@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { SubmitButton } from "../elements/buttons/SubmitButton";
-import { PlaneInput } from "../elements/inputs/PlaneInput";
+import { PlainInput } from "../elements/inputs/PlainInput";
 
 export const OtherThanTechPage = (): JSX.Element => {
   const [userState, setUserState] = useRecoilState(UserState);
@@ -37,7 +37,7 @@ export const OtherThanTechPage = (): JSX.Element => {
         onSubmit={handleSubmit(onSubmit)}
         className="container flex flex-col gap-16 max-w-500"
       >
-        <PlaneInput
+        <PlainInput
           labelText="名前"
           placeholder="フルネームをご入力ください"
           register={register}
@@ -66,7 +66,7 @@ export const OtherThanTechPage = (): JSX.Element => {
             ))}
           </div>
         </div>
-        <PlaneInput
+        <PlainInput
           labelText="大学・専門"
           placeholder="学校名"
           register={register}
