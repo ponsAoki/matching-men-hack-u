@@ -6,3 +6,4 @@ export const AuthForm = () => {
 }
 
 //新規登録とログインのフォームをコンポーネント化する
+//一旦signInとsignUpを別のファイルで作
