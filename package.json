@@ -18,7 +18,10 @@
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.5",
+    "react-select": "^5.7.0",
     "recoil": "^0.7.7",
+    "recoil-persist": "^4.2.0",
     "typescript": "4.9.5"
   },
   "devDependencies": {
