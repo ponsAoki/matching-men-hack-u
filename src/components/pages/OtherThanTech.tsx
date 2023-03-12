@@ -37,21 +37,25 @@ export const OtherThanTechPage = (): JSX.Element => {
         />
         <div className="flex flex-col gap-6">
           <label htmlFor="radio">卒業予定年度</label>
-          <div id="radio" className="flex flex-row gap-8">
-            {years.map((graduateYear: string) => (
-              <div key={graduateYear}>
-                <input
-                  id={graduateYear}
-                  type="radio"
-                  value={graduateYear}
-                  className="focus:ring-red-400 mr-2"
-                  {...register("graduateYear")}
-                />
-                <label htmlFor={graduateYear} className="text-base">
-                  {graduateYear}
-                </label>
-              </div>
-            ))}
+          <div id="radio" className="flex flex-wrap gap-8">
+            {years.length > 1 &&
+              years.map((graduateYear: string) => (
+                <div key={graduateYear}>
+                  <input
+                    id={graduateYear}
+                    type="radio"
+                    value={graduateYear}
+                    className="text-red-600 focus:ring-red-400 peer hidden"
+                    {...register("graduateYear")}
+                  />
+                  <label
+                    htmlFor={graduateYear}
+                    className="px-8 py-2 rounded-3xl bg-white text-base cursor-pointer peer-checked:bg-gray-200"
+                  >
+                    {graduateYear}
+                  </label>
+                </div>
+              ))}
           </div>
         </div>
         <PlainInput

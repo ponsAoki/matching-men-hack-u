@@ -46,7 +46,6 @@ export const SkillPage = (): JSX.Element => {
                 field.onChange(selectedSkills.map((skill) => skill.value));
               }}
               placeholder="スキル名を選択してください (複数選択可)"
-              className="bg-inherit"
             />
           )}
         />
@@ -54,7 +53,7 @@ export const SkillPage = (): JSX.Element => {
           {selectedSkills.map((selectedSkill) => (
             <div
               key={selectedSkill.label}
-              className="bg-gray-200 px-8 py-2 rounded-3xl bg-white text-base"
+              className="px-8 py-2 rounded-3xl bg-white text-base"
             >
               {selectedSkill.value ?? " "}
             </div>
