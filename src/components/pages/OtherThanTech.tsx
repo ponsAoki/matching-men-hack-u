@@ -1,8 +1,6 @@
-import { GRADUATION_YEARS } from "@/constants/constants";
 import { UserState } from "@/global-states/atoms";
-import { useAuth } from "@/hooks/useAuth";
+import { useGraduationYears } from "@/hooks/useGraduationYears";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { SubmitButton } from "../elements/buttons/SubmitButton";
@@ -11,20 +9,14 @@ import { PlainInput } from "../elements/inputs/PlainInput";
 export const OtherThanTechPage = (): JSX.Element => {
   const [userState, setUserState] = useRecoilState(UserState);
   const { register, handleSubmit } = useForm();
-  const user = useAuth();
   const router = useRouter();
-  const [years, setYears] = useState(GRADUATION_YEARS);
+  const { graduationYears } = useGraduationYears();
 
-  const onChangeYear = (e: any) => {
-    setYears((prev) =>
-      prev.map((elm) => {
-        if (elm.year === e.target.outerText) {
-          return { ...elm, selected: !elm.selected };
-        }
-        return { ...elm, selected: false };
-      })
-    );
-  };
+  const years = [...graduationYears]
+    .filter((year) => year.year !== "other")
+    .sort((a, b) => (a.year as number) - (b.year as number))
+    .map((year) => `${year.year}年度`);
+  years.push("その他");
 
   const onSubmit = (submitData: any) => {
     setUserState({ ...userState, ...submitData });
@@ -46,21 +38,17 @@ export const OtherThanTechPage = (): JSX.Element => {
         <div className="flex flex-col gap-6">
           <label htmlFor="radio">卒業予定年度</label>
           <div id="radio" className="flex flex-row gap-8">
-            {years.map((graduateYear) => (
-              <div key={graduateYear.year}>
+            {years.map((graduateYear: string) => (
+              <div key={graduateYear}>
                 <input
-                  id={graduateYear.year}
+                  id={graduateYear}
                   type="radio"
-                  value={graduateYear.year}
+                  value={graduateYear}
                   className="focus:ring-red-400 mr-2"
                   {...register("graduateYear")}
                 />
-                <label
-                  htmlFor={graduateYear.year}
-                  className="text-base"
-                  onClick={(e): void => onChangeYear(e)}
-                >
-                  {graduateYear.year}
+                <label htmlFor={graduateYear} className="text-base">
+                  {graduateYear}
                 </label>
               </div>
             ))}

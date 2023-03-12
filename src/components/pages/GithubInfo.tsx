@@ -1,5 +1,5 @@
 import { UserState } from "@/global-states/atoms";
-import { userRepository } from "@/modules/user/user.repository";
+import { UserRepository } from "@/modules/user/user.repository";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
@@ -15,7 +15,7 @@ export const GithubInfoPage = (): JSX.Element => {
     setUserState({ ...userState, ...submitData });
     //※デプロイまでには↓エラーはスローしないようにしたい
     if (!userState?.uid) throw new Error("userState.uidがないです！");
-    await userRepository.update(userState.uid, { ...userState, ...submitData });
+    await UserRepository.update(userState.uid, { ...userState, ...submitData });
     router.push("/");
   };
 

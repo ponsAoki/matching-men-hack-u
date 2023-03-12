@@ -1,6 +1,6 @@
-import { programingSkillRepository } from "@/modules/programingSkill/programingSkill.repository";
+import { ProgramingSkillRepository } from "@/modules/programingSkill/programingSkill.repository";
 import { useEffect, useState } from "react";
-import { ProgramingSkill } from "../../types/programingSkills";
+import { ProgramingSkill } from "../../types/programingSkill";
 
 export const useProgramingSkills = () => {
   const [programingSkills, setProgramingSkills] = useState<ProgramingSkill[]>(
@@ -9,7 +9,7 @@ export const useProgramingSkills = () => {
 
   useEffect(() => {
     (async () => {
-      const fetchedSkills = await programingSkillRepository.findMany();
+      const fetchedSkills = await ProgramingSkillRepository.findMany();
       setProgramingSkills(fetchedSkills);
     })();
   }, []);
