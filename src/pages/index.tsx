@@ -7,7 +7,7 @@ const Home = () => {
   if (!user?.uid) return <Loading />
   
   return (
-    <Main />
-  )
-  }
+      <Main />
+  );
+};
 export default Home;
