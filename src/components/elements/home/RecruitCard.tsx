@@ -33,7 +33,7 @@ export const RecruitCard = () => {
                   className="flex flex-wrap justify-center line-clamp-1"
                 >
                   <span className="inline-flex items-center gap-1.5 py-1 px-2 mx-3 mt-5 text-xs rounded-full font-caveat bg-background-color ">
-                    {skill.label}
+                    {skill.value}
                   </span>
                 </div>
               ))}

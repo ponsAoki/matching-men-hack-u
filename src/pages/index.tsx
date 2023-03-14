@@ -1,6 +1,5 @@
-import HomeScreen from "@/components/pages/Home";
+import { HomeScreen } from "@/components/pages/HomeScreen";
 import { Loading } from "@/components/pages/Loading";
-import { Main } from "@/components/pages/Main";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -14,6 +13,7 @@ const Home = () => {
 
   if (!uid) return <Loading />;
 
+  // return <Main />;
   return <HomeScreen />;
 };
 export default Home;
