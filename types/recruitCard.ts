@@ -2,7 +2,7 @@ export type recruitCard = {
   headline: string;
   timestamp: number;
   recruitment_details: string;
-  programing_skills?: Option[]
+  programing_skills?: Option[];
   user_id: string;
   //   tag_id?: any;
   //   number_of_applicants?: string[];

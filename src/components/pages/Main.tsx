@@ -2,7 +2,7 @@ import { useRecoilValue } from "recoil";
 import { UserState, UserStateType } from "@/global-states/atoms";
 import { authRepository } from "@/modules/auth.repository";
 import { useState } from "react";
-import { CreateRecruitModal } from "../elements/recruitElement/CreateRecruitModal";
+import { CreateRecruitModal } from "../elements/commons/modals/CreateRecruitModal";
 
 export const Main = () => {
   const userAtomVal = useRecoilValue<UserStateType>(UserState);
@@ -11,11 +11,11 @@ export const Main = () => {
 
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
   return (
     <>
@@ -23,7 +23,9 @@ export const Main = () => {
         <p>Main </p>
         <p>ユーザーid: {userAtomVal?.uid}</p>
         <br />
-        <button onClick={authRepository.logOut} className="bg-white">サインアウト</button>
+        <button onClick={authRepository.logOut} className="bg-white">
+          サインアウト
+        </button>
       </div>
 
       <div>
@@ -45,5 +47,4 @@ export const Main = () => {
       </div>
     </>
   );
-}
-
+};

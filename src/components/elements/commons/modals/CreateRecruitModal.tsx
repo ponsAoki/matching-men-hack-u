@@ -1,31 +1,32 @@
 import { Fragment, useState } from "react";
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition } from "@headlessui/react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import { useProgramingSkills } from "@/hooks/useProgramingSkills";
-import { Option } from "../../../../types/recruitCard";
+import { Option } from "../../../../../types/recruitCard";
 
-import { recruitCard } from "../../../../types/recruitCard";
+import { recruitCard } from "../../../../../types/recruitCard";
 import { recruitRepository } from "@/modules/recruit/recruit.repository";
-
 
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
   user: any;
-}
+};
 
-export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }):JSX.Element => {
-
-
+export const CreateRecruitModal: React.FC<Props> = ({
+  isOpen,
+  closeModal,
+  user,
+}): JSX.Element => {
   const { handleSubmit, register, control } = useForm();
 
   const { programingSkills } = useProgramingSkills();
   const [selectedSkills, setSelectedSkills] = useState<Option[]>([]);
 
   const options = programingSkills.map((skill) => {
-    return { label: skill.name, value: skill.name}
-  })
+    return { label: skill.name, value: skill.name };
+  });
 
   const onSubmit = (data: any) => {
     console.log(user);
@@ -35,12 +36,11 @@ export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }
       recruitment_details: data.recruitment_details,
       programing_skills: selectedSkills,
       timestamp: Date.now(),
-      user_id: user
-    }
+      user_id: user,
+    };
     recruitRepository.createRecruitment(recruit_data);
     closeModal();
-
-  }
+  };
 
   return (
     <>
@@ -61,29 +61,27 @@ export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 scale-95"
-                  enterTo="opacity-100 scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 scale-100"
-                  leaveTo="opacity-0 scale-95"
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
                   >
                     募集する
                   </Dialog.Title>
                   <div className="mt-2">
                     {/* formを作成する */}
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <input
                         {...register("headline", {
-                          required: '必須入力です'
+                          required: "必須入力です",
                         })}
                         placeholder="タイトルをご入力ください"
                       />
@@ -97,7 +95,9 @@ export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }
                             options={options}
                             onChange={(selectedSkills) => {
                               setSelectedSkills(selectedSkills as Option[]);
-                              field.onChange(selectedSkills.map((skill) => skill.value));
+                              field.onChange(
+                                selectedSkills.map((skill) => skill.value)
+                              );
                             }}
                             placeholder="スキル名を選択してください (複数選択可)"
                           />
@@ -116,7 +116,7 @@ export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }
 
                       <input
                         {...register("recruitment_details", {
-                          required: '必須入力です'
+                          required: "必須入力です",
                         })}
                         placeholder="詳細な情報を自由にご入力ください"
                       />
@@ -133,9 +133,8 @@ export const CreateRecruitModal: React.FC<Props> = ({ isOpen, closeModal, user }
         </Dialog>
       </Transition>
     </>
-  )
-}
-
+  );
+};
 
 //リファクタ
 //skillInputをコンポーネント化

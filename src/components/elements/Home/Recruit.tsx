@@ -1,5 +1,5 @@
-import { ModalCard } from "./ModalCard";
-import { RecruitCard } from "./RecruitCard";
+import { CreateDetailModal } from "../commons/modals/CreateDetailModal";
+import { RecruitList } from "../header/RecruitList";
 
 export const Recruit = () => {
   return (
@@ -18,8 +18,14 @@ export const Recruit = () => {
             </button>
           </div>
         </div>
-        <RecruitCard />
-        <ModalCard />
+        <RecruitList />
+        <CreateDetailModal
+          isOpen={false}
+          closeModal={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+          recruit={undefined}
+        />
       </div>
     </div>
   );
