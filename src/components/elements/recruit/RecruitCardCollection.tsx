@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRecruit } from "@/hooks/useRecruit";
 import { useState } from "react";
-import { CreateDetailModal } from "../modal/CreateDetailModal";
+import { CreateDetailModal } from "../commons/modals/CreateDetailModal";
 import { RecruitCard } from "./RecruitCard";
 
 export const RecruitCardCollection = () => {
