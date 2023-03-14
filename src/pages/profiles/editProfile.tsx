@@ -1,4 +1,4 @@
-import { HeaderLine } from "@/components/elements/Home/Header";
+import { HeaderLine } from "@/components/elements/commons/header/Header";
 import { EditProfile } from "@/components/pages/EditProfile";
 
 const EditProfilePage = (): JSX.Element => {

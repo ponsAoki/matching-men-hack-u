@@ -10,7 +10,7 @@ import Select from "react-select";
 import { useRecoilValue } from "recoil";
 import { PlainInput } from "../elements/commons/inputs/PlainInput";
 import { ConfirmModal } from "../elements/commons/modals/ConfirmModal";
-import { RecruitCard } from "../elements/Home/RecruitCard";
+import { RecruitCard } from "../elements/commons/cards/RecruitCard";
 import { EditProfileModal } from "../elements/Profile/EditProfileModal";
 import { FormField } from "../elements/Profile/FormField";
 import { GraduationYearRadio } from "../elements/Profile/GraduationYearRadio";
