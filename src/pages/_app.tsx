@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  useEffect(() => {
-    require("preline");
-  }, []);
   return (
     <RecoilRoot>
       <Component {...pageProps} />

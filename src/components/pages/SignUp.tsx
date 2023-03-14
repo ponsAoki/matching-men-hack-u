@@ -25,7 +25,7 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="bg-red-50 flex justify-center h-screen content-center">
+    <div className="flex justify-center h-screen content-center">
       <div className="flex flex-col justify-center w-3/5 ">
         <div className="flex justify-center">
           <div className="flex flex-col items-center w-screen">
@@ -52,7 +52,7 @@ export const SignUp = () => {
           <div className="border-t w-3/5 border-black ml-20"></div>
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
-        
+
         <div>
           <p className="pt-6 border-b border-black"></p>
         </div>
