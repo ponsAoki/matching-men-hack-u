@@ -5,9 +5,9 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import { useRecoilState } from "recoil";
-import { SubmitButton } from "../elements/buttons/SubmitButton";
+import { SubmitButton } from "../elements/commons/buttons/SubmitButton";
 
-type Option = {
+export type Option = {
   label: string;
   value: string;
 };

@@ -1,5 +1,13 @@
 import { db } from "@/libs/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { recruitCard } from "../../../types/recruitCard";
 
 export const recruitRepository = {
@@ -11,9 +19,27 @@ export const recruitRepository = {
     return recruits;
   },
 
-  //募集の作成
-  async createRecruitment(data: recruitCard) :Promise<void> {
+  //特定のuidを持つ募集の取得
+  async findManyByUid(uid: string): Promise<any> {
     const collectionRef = collection(db, "Recruit");
-    await addDoc(collectionRef, data)
-  }
+    const q = query(collectionRef, where("user_id", "==", uid));
+    const querySnapshot = await getDocs(q);
+    const recruits = querySnapshot.docs.map((doc) => {
+      return { data: doc.data() as recruitCard, id: doc.id };
+    });
+    return recruits;
+  },
+
+  //募集の作成
+  async createRecruitment(data: recruitCard): Promise<void> {
+    const collectionRef = collection(db, "Recruit");
+    await addDoc(collectionRef, data);
+  },
+
+  //募集の削除
+  async delete(recruitId: string): Promise<any> {
+    await deleteDoc(doc(db, `Recruit/${recruitId}`)).catch((err) => {
+      throw new Error(err);
+    });
+  },
 };

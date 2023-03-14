@@ -1,5 +1,5 @@
 import { ModalCard } from "./ModalCard";
-import { RecruitCard } from "./RecruitCard";
+import { RecruitList } from "./RecruitList";
 
 export const Recruit = () => {
   return (
@@ -18,7 +18,7 @@ export const Recruit = () => {
             </button>
           </div>
         </div>
-        <RecruitCard />
+        <RecruitList />
         <ModalCard />
       </div>
     </div>
