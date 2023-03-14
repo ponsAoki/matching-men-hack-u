@@ -1,4 +1,3 @@
-import { ModalCard } from "./ModalCard";
 import { RecruitCard } from "./RecruitCard";
 
 export const Recruit = () => {
@@ -19,7 +18,6 @@ export const Recruit = () => {
           </div>
         </div>
         <RecruitCard />
-        <ModalCard />
       </div>
     </div>
   );

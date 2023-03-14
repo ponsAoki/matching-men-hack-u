@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/node": "18.14.6",
     "@types/react": "18.0.28",
@@ -17,7 +18,6 @@
     "eslint-config-next": "13.2.3",
     "firebase": "^9.17.2",
     "next": "13.2.3",
-    "preline": "^1.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",

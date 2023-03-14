@@ -8,13 +8,11 @@ export const Main = () => {
   const userAtomVal = useRecoilValue<UserStateType>(UserState);
 
   return (
-    <>
+    <div>
       <p>Main </p>
       <p>ユーザーid: {userAtomVal?.uid}</p>
       <br />
       <button onClick={authRepository.logOut}>サインアウト</button>
-
-    </>
+    </div>
   );
-}
-
+};

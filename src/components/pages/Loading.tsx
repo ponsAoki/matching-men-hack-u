@@ -1,7 +1,9 @@
-export const Loading: React.FC = ():JSX.Element => {
+import Image from "next/image";
+
+export const Loading: React.FC = (): JSX.Element => {
   return (
     <div className="bg-red-50 flex justify-center h-screen w-screen content-center">
-      <img src="/loading.png" className=" w-64 h-64 bg-slate-50"/>
+      <Image src="/load.gif" alt="" width={150} height={150} />
     </div>
-  )
-}
+  );
+};
