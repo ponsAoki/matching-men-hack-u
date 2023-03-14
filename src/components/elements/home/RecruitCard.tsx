@@ -2,7 +2,6 @@ import Image from "next/image";
 import { recruitCard } from "../../../../types/recruitCard";
 
 type RecruitCardProps = {
-  key: number;
   recruit: recruitCard;
   children?: any;
   cardHeight?: string;
@@ -10,7 +9,6 @@ type RecruitCardProps = {
 };
 
 export const RecruitCard = ({
-  key,
   recruit,
   children,
   cardHeight = "h-100",
@@ -18,7 +16,6 @@ export const RecruitCard = ({
 }: RecruitCardProps): JSX.Element => {
   return (
     <div
-      key={key}
       className={`group relative mb-2 block ${cardHeight} ${cardWidth} border overflow-hidden rounded-3xl bg-white lg:mb-3`}
       data-hs-overlay="#one"
     >

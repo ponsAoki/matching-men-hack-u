@@ -37,7 +37,7 @@ export const recruitRepository = {
   },
 
   //募集の削除
-  async delete(recruitId: string): Promise<any> {
+  async delete(recruitId: string): Promise<void> {
     await deleteDoc(doc(db, `Recruit/${recruitId}`)).catch((err) => {
       throw new Error(err);
     });

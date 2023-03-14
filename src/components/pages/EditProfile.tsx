@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { PlainInput } from "../elements/commons/inputs/PlainInput";
 import { ConfirmModal } from "../elements/commons/modals/ConfirmModal";
 import { RecruitCard } from "../elements/Home/RecruitCard";
@@ -17,8 +17,7 @@ import { GraduationYearRadio } from "../elements/Profile/GraduationYearRadio";
 import { Loading } from "./Loading";
 
 export const EditProfile = (): JSX.Element => {
-  const authUser = useAuth();
-  const [userState, setUserState] = useRecoilState<UserStateType>(UserState);
+  useAuth(); //レンダリング時にuserCollectionから再fetchするため (もうちょっと良さそうな方法に書き換えたい)
   const userStateVal = useRecoilValue<UserStateType>(UserState);
   const [user, setUser] = useState<UserStateType>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,7 +38,7 @@ export const EditProfile = (): JSX.Element => {
     if (!userStateVal) {
       setIsLoading(true);
     } else {
-      setUser(userState);
+      setUser(userStateVal);
       setIsLoading(false);
     }
   }, [userStateVal]);
@@ -77,8 +76,7 @@ export const EditProfile = (): JSX.Element => {
       <EditProfileModal
         isOpen={isUserNameOpen}
         setIsOpen={setIsUserNameOpen}
-        user={userStateVal}
-        userState={userState}
+        userStateVal={userStateVal}
         handleSubmit={handleSubmit}
       >
         <PlainInput
@@ -98,8 +96,7 @@ export const EditProfile = (): JSX.Element => {
       <EditProfileModal
         isOpen={isUniversityOpen}
         setIsOpen={setIsUniversityOpen}
-        user={userStateVal}
-        userState={userState}
+        userStateVal={userStateVal}
         handleSubmit={handleSubmit}
       >
         <PlainInput
@@ -121,8 +118,7 @@ export const EditProfile = (): JSX.Element => {
       <EditProfileModal
         isOpen={isGraduationYearOpen}
         setIsOpen={setIsGraduationYearOpen}
-        user={userStateVal}
-        userState={userState}
+        userStateVal={userStateVal}
         handleSubmit={handleSubmit}
       >
         <GraduationYearRadio
@@ -140,8 +136,7 @@ export const EditProfile = (): JSX.Element => {
       <EditProfileModal
         isOpen={isGithubInfoOpen}
         setIsOpen={setIsGithubInfoOpen}
-        user={userStateVal}
-        userState={userState}
+        userStateVal={userStateVal}
         handleSubmit={handleSubmit}
       >
         <PlainInput
@@ -170,8 +165,7 @@ export const EditProfile = (): JSX.Element => {
       <EditProfileModal
         isOpen={isSkillOpen}
         setIsOpen={setIsSkillOpen}
-        user={userStateVal}
-        userState={userState}
+        userStateVal={userStateVal}
         handleSubmit={handleSubmit}
       >
         <div className="flex flex-col gap-6 text-lg">
@@ -200,7 +194,7 @@ export const EditProfile = (): JSX.Element => {
             ownRecruits.map((recruit: any, index: number) => (
               //以降をcomponentに切り出したい
               <RecruitCard
-                key={index}
+                key={recruit.id}
                 recruit={recruit.data}
                 cardHeight={"h-80"}
                 cardWidth={"w-60"}

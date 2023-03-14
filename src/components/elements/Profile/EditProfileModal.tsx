@@ -8,8 +8,7 @@ type EditProfileModalProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   children: any;
-  user: UserStateType;
-  userState: UserStateType;
+  userStateVal: UserStateType;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
 };
 
@@ -17,13 +16,15 @@ export const EditProfileModal = ({
   isOpen,
   setIsOpen,
   children,
-  user,
-  userState,
+  userStateVal,
   handleSubmit,
 }: EditProfileModalProps): JSX.Element => {
   const onEditSubmit = async (submitData: any) => {
-    if (!user) throw new Error("userStateのRecoilValueが空");
-    await UserRepository.update(user.uid, { ...userState, ...submitData });
+    if (!userStateVal) throw new Error("userStateのRecoilValueが空");
+    await UserRepository.update(userStateVal.uid, {
+      ...userStateVal,
+      ...submitData,
+    });
     setIsOpen(false);
     location.reload();
   };
