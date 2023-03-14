@@ -1,5 +1,5 @@
 import { recruitRepository } from "@/modules/recruit/recruit.repository";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { recruitCard } from "../../types/recruitCard";
 
 export const useRecruit = () => {

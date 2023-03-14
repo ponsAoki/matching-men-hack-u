@@ -2,7 +2,7 @@ import { UserState, UserStateType } from "@/global-states/atoms";
 import Image from "next/image";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { CreateRecruitModal } from "../modal/CreateRecruitModal";
+import { CreateRecruitModal } from "../../modal/CreateRecruitModal";
 
 export const AddCardButton = () => {
   const userAtomVal = useRecoilValue<UserStateType>(UserState);

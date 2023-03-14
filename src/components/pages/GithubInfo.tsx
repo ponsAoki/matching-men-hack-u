@@ -3,8 +3,8 @@ import { UserRepository } from "@/modules/user/user.repository";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { SubmitButton } from "../elements/buttons/SubmitButton";
-import { PlainInput } from "../elements/inputs/PlainInput";
+import { SubmitButton } from "../elements/commons/buttons/SubmitButton";
+import { PlainInput } from "../elements/commons/inputs/PlainInput";
 
 export const GithubInfoPage = (): JSX.Element => {
   const [userState, setUserState] = useRecoilState(UserState);

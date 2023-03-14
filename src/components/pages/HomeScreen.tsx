@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { AddCardButton } from "../elements/buttons/AddCardButton";
-import { NewOrder } from "../elements/buttons/NewOrder";
+import { AddCardButton } from "../elements/commons/buttons/AddCardButton";
+import { NewOrder } from "../elements/commons/buttons/NewOrder";
 import { HeaderLine } from "../elements/header/Header";
 import { RecruitCardCollection } from "../elements/recruit/RecruitCardCollection";
-import { Search } from "../elements/inputs/Search";
+import { Search } from "../elements/commons/inputs/Search";
 
 export const HomeScreen = () => {
   return (
