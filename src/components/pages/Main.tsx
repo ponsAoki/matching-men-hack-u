@@ -2,7 +2,7 @@ import { useRecoilValue } from "recoil";
 import { UserState, UserStateType } from "@/global-states/atoms";
 import { authRepository } from "@/modules/auth.repository";
 import { useState } from "react";
-import { CreateRecruitModal } from "../elements/recruitElement/CreateRecruitModal";
+import { CreateRecruitModal } from "../elements/modal/CreateRecruitModal";
 
 export const Main = () => {
   const userAtomVal = useRecoilValue<UserStateType>(UserState);
