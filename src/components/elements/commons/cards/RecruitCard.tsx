@@ -57,7 +57,6 @@ export const RecruitCard = ({
           </p>
         </div>
       </div>
-      {/* run code if "RercruitList.tsx" calls */}
       {allRecruits && (
         <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
           <button

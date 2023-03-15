@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { recruitCard } from "../../../../../types/recruitCard";
 import { recruitRepository } from "@/modules/recruit/recruit.repository";
+import { serverTimestamp } from "firebase/firestore";
 
 type Props = {
   isOpen: boolean;
@@ -36,7 +37,7 @@ export const CreateRecruitModal: React.FC<Props> = ({
       headline: data.headline,
       recruitment_details: data.recruitment_details,
       programing_skills: selectedSkills,
-      timestamp: Date.now(),
+      timestamp: serverTimestamp(),
       user_id: user,
     };
     recruitRepository.createRecruitment(recruit_data);
