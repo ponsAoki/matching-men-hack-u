@@ -5,14 +5,14 @@ import Image from "next/image";
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
-  recruit: any;
+  allRecruit: any;
   index: number;
 };
 
 export const CreateDetailModal: React.FC<Props> = ({
   isOpen,
   closeModal,
-  recruit,
+  allRecruit,
   index,
 }): JSX.Element => {
   return (
@@ -46,7 +46,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                   <div className="flex justify-between items-center py-3 px-4">
                     <div className="flex justify-end object-cover object-center">
                       <p className="font-zen font-regular">
-                        {recruit[index].timestamp}
+                        {allRecruit[index].timestamp}
                       </p>
                     </div>
                   </div>
@@ -62,12 +62,12 @@ export const CreateDetailModal: React.FC<Props> = ({
                     <div className="flex justify-center object-cover object-center">
                       <div className="flex flex-col">
                         <h3 className="font-zen font-regular text-1xl lg:text-3xl">
-                          {recruit[index].headline}
+                          {allRecruit[index].headline}
                         </h3>
                       </div>
                     </div>
                     <div className="flex justify-center object-cover object-center mt-10 mx-20">
-                      {recruit[index].programing_skills?.map(
+                      {allRecruit[index].programing_skills?.map(
                         (skill: { value: string }, index: Key) => (
                           <div
                             key={index}
@@ -83,7 +83,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                     <div className="flex justify-center mt-10 object-cover object-center">
                       <div className="flex flex-col">
                         <p className="font-zen font-light mx-10">
-                          {recruit[index].recruitment_details}
+                          {allRecruit[index].recruitment_details}
                         </p>
                       </div>
                     </div>

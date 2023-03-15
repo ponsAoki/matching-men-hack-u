@@ -13,8 +13,8 @@ export const RecruitList = (): JSX.Element => {
         <RecruitCard
           key={recruit.timestamp}
           recruit={recruit}
-          allRecruits={recruits}
           index={index}
+          allRecruits={recruits}
         />
       ))}
     </div>
