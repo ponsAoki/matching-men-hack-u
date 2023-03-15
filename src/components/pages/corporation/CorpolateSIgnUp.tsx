@@ -1,19 +1,18 @@
 import { authRepository } from "@/modules/auth.repository";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { AuthButton } from "../elements/authElements/AuthButton";
-import { AuthInput } from "../elements/authElements/AuthInput";
+import { AuthInput } from "@/components/elements/authElements/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
 
-export const SignIn: React.FC = (): JSX.Element => {
+export const CorpolateSignUp = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    authRepository.signInWithEmail(email, password).then(() => router.push('/'));
+    authRepository.signUpWithEmail(email, password).then(() => router.push('/corpolation/inputInfo'));
   };
 
   const handleChangeEmail = (event: {target: HTMLInputElement}) => {
@@ -27,31 +26,16 @@ export const SignIn: React.FC = (): JSX.Element => {
   return (
     <div className="flex justify-center h-screen content-center">
       <div className="flex flex-col justify-center w-3/5 ">
-        <div className="flex justify-center">
-          <div className="flex flex-col items-center w-screen">
-            <AuthButton
-              src="/Google-Icon-PNG_rwscww 1.png"
-              onClick={() => authRepository.signInWithGoogle().then(() => router.push('/'))}
-            >
-              Continue with Google
-            </AuthButton>
-            <AuthButton
-              src="/kisspng-computer-icons-logo-portable-network-graphics-clip-icons-for-free-iconza-circle-social-5b7fe46b4ec817 1.png"
-              onClick={authRepository.signWithGithub}
-            >
-              Continue with GitHub
-            </AuthButton>
-          </div>
+        <div className="flex justify-center p-5">
+          <p className="font-bold text-5xl font-caveat">UNITE(Corpolate)</p>
         </div>
 
         <div className="flex justify-end">
-          <Image src="/cat.gif" alt="logo" width={90} height={90} />
+          <Image src="/cat.gif" width={90} height={90} alt="logo"/>
         </div>
         <div className="flex justify-center">
-          <div className="border-t w-3/5 border-black mr-20"></div>
-          <div className="border-t w-3/5 border-black ml-20"></div>
+          <div className="border-t w-full border-black"></div>
         </div>
-        <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
         <form className="flex-col" onSubmit={handleSubmit}>
           <AuthInput
@@ -69,18 +53,16 @@ export const SignIn: React.FC = (): JSX.Element => {
             onChange={handleChangePassword}
           />
           <div className="flex justify-center mt-10">
-            <button type="submit" className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center">ログイン</button>
+            <button type="submit" className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center">アカウントを作る</button>
           </div>
         </form>
         <div className="flex justify-center">
-          <p>まだアカウントをお持ちでない方　</p>
-          <Link href="/signUp" className="font-bold">
-            登録
+          <p>アカウントをお持ちの企業様　</p>
+          <Link href="/corpolation/corpolateSignIn" className="font-bold">
+            ログイン
           </Link>
         </div>
       </div>
     </div>
   );
 };
-
-//SignUpとSignInも１つのコンポーネントにまとめる

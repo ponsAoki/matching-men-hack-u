@@ -19,7 +19,7 @@ export const AuthInput: React.FC<Props> = ({ label, placeholder, email, onChange
         type={buttonType}
         placeholder={placeholder}
         onChange={onChange}
-        className="bg-red-50 border-b border-black  w-full mt-3"
+        className="bg-background-color border-b border-black  w-full mt-3"
       />
     </div>
   )

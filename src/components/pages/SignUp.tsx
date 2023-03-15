@@ -45,17 +45,14 @@ export const SignUp = () => {
         </div>
 
         <div className="flex justify-end">
-          <p>猫</p>
+          <Image src="/cat.gif" alt="logo" width={90} height={90} />
         </div>
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center">
           <div className="border-t w-3/5 border-black mr-20"></div>
           <div className="border-t w-3/5 border-black ml-20"></div>
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <div>
-          <p className="pt-6 border-b border-black"></p>
-        </div>
         <form className="flex-col" onSubmit={handleSubmit}>
           <AuthInput
             label="メールアドレス"
@@ -79,6 +76,12 @@ export const SignUp = () => {
           <p>アカウントをお持ちの方はこちら　</p>
           <Link href="/signIn" className="font-bold">
             ログイン
+          </Link>
+        </div>
+        <div className="flex justify-center">
+          <p>企業様はこちらです　</p>
+          <Link href="/corpolation" className="font-bold">
+            こちら
           </Link>
         </div>
       </div>
