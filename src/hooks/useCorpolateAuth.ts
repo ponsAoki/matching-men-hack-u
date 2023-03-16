@@ -44,5 +44,6 @@ export const useCorpolateAuth = (): UserStateType => {
     return () => unsub();
   }, []);
 
+  console.log(corpolation)
   return corpolation;
 };

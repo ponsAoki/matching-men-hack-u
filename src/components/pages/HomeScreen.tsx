@@ -1,21 +1,44 @@
 import { AddCardButton } from "@/components/elements/commons/buttons/AddCardButton";
 import { HeaderLine } from "@/components/elements/commons/header/Header";
 import Link from "next/link";
+import { useState } from "react";
 import { NewOrder } from "../elements/commons/buttons/NewOrder";
 import { Search } from "../elements/commons/inputs/Search";
 import { RecruitList } from "../elements/Home/RecruitList";
+import { UploadProductModal } from "../elements/UploadProductModal";
 
 export const HomeScreen = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <HeaderLine />
       <div className="mx-auto">
         <header className="border-b border-black/20 w-full">
-          <div className="font-caveat mx-auto flex items-center justify-between">
-            <Link className=" font-zen font-light text-2xl pl-20" href={""}>
-              募集一覧
-            </Link>
-            <div className="flex border-l border-black/20 ml-12 items-center">
+          <div className="font-caveat mx-auto flex">
+            <div className="flex-1">
+              <Link className=" font-zen font-light text-2xl pl-20 inline-block my-2" href={""}>
+                募集一覧
+              </Link>
+            </div>
+            <div className="flex-1 border-l border-black/20 pl-12 items-center">
+              <button
+                type="button"
+                onClick={openModal}
+                className="rounded-md font-zen font-light text-xl  my-2 p-1 focus:bg-white/50 hover:bg-white/50"
+              >
+                upload product
+              </button>
+            </div>
+            <div className="flex-1 flex border-l border-black/20 ml-12 items-center">
               <Search />
             </div>
             <div className="flex"></div>
@@ -36,6 +59,12 @@ export const HomeScreen = () => {
         </div>
       </div>
       <AddCardButton />
+
+
+      <UploadProductModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+      />
     </>
   );
 };
