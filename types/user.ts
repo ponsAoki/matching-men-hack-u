@@ -13,6 +13,7 @@ export type User = {
   internship_experience?: boolean;
   github?: string;
   programingSkills?: [string];
+  room_ids?: string[];
 };
 
 //position, prefectureはcollectionとして管理する。

@@ -57,25 +57,23 @@ export const RecruitCard = ({
           </p>
         </div>
       </div>
-      {allRecruits && (
-        <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
-          <button
-            className="font-zen font-light px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent hover:bg-tertiary-color"
-            onClick={() => {
-              setIsOpen(true);
-              setKeptIndex(index);
-            }}
-          >
-            詳細を見る
-          </button>
-          <CreateDetailModal
-            isOpen={isOpen}
-            closeModal={() => setIsOpen(false)}
-            allRecruit={allRecruits}
-            index={keptIndex}
-          />
-        </div>
-      )}
+      <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
+        <button
+          className="font-zen font-light px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent hover:bg-tertiary-color"
+          onClick={() => {
+            setIsOpen(true);
+            setKeptIndex(index);
+          }}
+        >
+          詳細を見る
+        </button>
+        <CreateDetailModal
+          isOpen={isOpen}
+          closeModal={() => setIsOpen(false)}
+          recruit={recruit}
+          index={keptIndex}
+        />
+      </div>
     </div>
   );
 };
