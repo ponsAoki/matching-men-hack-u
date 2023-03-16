@@ -1,5 +1,5 @@
-import { SubmitButton } from "@/components/elements/buttons/SubmitButton";
-import { PlainInput } from "@/components/elements/inputs/PlainInput"
+import { SubmitButton } from "@/components/elements/commons/buttons/SubmitButton";
+import { PlainInput } from "@/components/elements/commons/inputs/PlainInput";
 import { CorpolationState, CorpolationStateType } from "@/global-states/corpolateAtom";
 import { CorpolationRepositry } from "@/modules/corpolation/corpolation.repository";
 import { useRouter } from "next/router";
