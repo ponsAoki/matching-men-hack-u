@@ -4,21 +4,21 @@ import { recruitCard } from "../../../../../types/recruitCard";
 import { CreateDetailModal } from "../modals/CreateDetailModal";
 
 type RecruitCardProps = {
-  allRecruits: recruitCard[];
   recruit: recruitCard;
-  index: number;
+  allRecruits?: any;
   children?: any;
   cardHeight?: string;
   cardWidth?: string;
+  index?: any;
 };
 
 export const RecruitCard = ({
-  allRecruits,
   recruit,
-  index,
+  allRecruits,
   children,
   cardHeight = "h-100",
   cardWidth,
+  index,
 }: RecruitCardProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [keptIndex, setKeptIndex] = useState<number>(0);

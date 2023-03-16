@@ -94,7 +94,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                   <div className="flex justify-between items-center py-3 px-4">
                     <div className="flex justify-end object-cover object-center">
                       <p className="font-zen font-regular">
-                        {`${recruit.timestamp}`}
+                        {recruit.timestamp.toDate().toLocaleString()}
                       </p>
                     </div>
                   </div>

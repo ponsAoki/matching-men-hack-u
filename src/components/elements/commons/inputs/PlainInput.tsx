@@ -1,7 +1,7 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 type PlainInputProps = {
-  labelText: string;
+  labelText?: string;
   inputType?: string;
   placeholder?: string;
   register?: UseFormRegister<FieldValues>;
