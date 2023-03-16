@@ -5,6 +5,8 @@ import { RecruitCard } from "../commons/cards/RecruitCard";
 export const RecruitList = (): JSX.Element => {
   const { recruits } = useRecruit();
 
+  recruits.sort((a, b) => b.timestamp - a.timestamp);
+
   if (recruits.length < 0) return <Loading />;
 
   return (
@@ -13,8 +15,8 @@ export const RecruitList = (): JSX.Element => {
         <RecruitCard
           key={recruit.timestamp}
           recruit={recruit}
-          allRecruits={recruits}
           index={index}
+          allRecruits={recruits}
         />
       ))}
     </div>

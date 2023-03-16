@@ -199,7 +199,7 @@ export const EditProfile = (): JSX.Element => {
                 cardHeight={"h-80"}
                 cardWidth={"w-60"}
               >
-                <div className="flex justify-end">
+                <div className="flex justify-end mr-2 mt-2">
                   <Image
                     src="/trash.gif"
                     alt="削除アイコン"

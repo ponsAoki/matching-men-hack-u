@@ -4,21 +4,21 @@ import { recruitCard } from "../../../../../types/recruitCard";
 import { CreateDetailModal } from "../modals/CreateDetailModal";
 
 type RecruitCardProps = {
-  allRecruits: recruitCard[];
   recruit: recruitCard;
-  index: number;
+  allRecruits?: any;
   children?: any;
   cardHeight?: string;
   cardWidth?: string;
+  index?: any;
 };
 
 export const RecruitCard = ({
-  allRecruits,
   recruit,
-  index,
+  allRecruits,
   children,
   cardHeight = "h-100",
   cardWidth,
+  index,
 }: RecruitCardProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [keptIndex, setKeptIndex] = useState<number>(0);
@@ -57,23 +57,25 @@ export const RecruitCard = ({
           </p>
         </div>
       </div>
-      <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
-        <button
-          className="font-zen font-light px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent hover:bg-tertiary-color"
-          onClick={() => {
-            setIsOpen(true);
-            setKeptIndex(index);
-          }}
-        >
-          詳細を見る
-        </button>
-        <CreateDetailModal
-          isOpen={isOpen}
-          closeModal={() => setIsOpen(false)}
-          recruit={allRecruits}
-          index={keptIndex}
-        />
-      </div>
+      {allRecruits && (
+        <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
+          <button
+            className="font-zen font-light px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent hover:bg-tertiary-color"
+            onClick={() => {
+              setIsOpen(true);
+              setKeptIndex(index);
+            }}
+          >
+            詳細を見る
+          </button>
+          <CreateDetailModal
+            isOpen={isOpen}
+            closeModal={() => setIsOpen(false)}
+            allRecruit={allRecruits}
+            index={keptIndex}
+          />
+        </div>
+      )}
     </div>
   );
 };
