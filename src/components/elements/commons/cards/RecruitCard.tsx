@@ -70,7 +70,7 @@ export const RecruitCard = ({
         <CreateDetailModal
           isOpen={isOpen}
           closeModal={() => setIsOpen(false)}
-          recruit={allRecruits}
+          recruit={recruit}
           index={keptIndex}
         />
       </div>

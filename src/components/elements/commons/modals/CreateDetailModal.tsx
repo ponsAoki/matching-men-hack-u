@@ -1,11 +1,18 @@
-import { Fragment, Key } from "react";
+import { UserState } from "@/global-states/atoms";
+import { useCertainUser } from "@/hooks/useCertainUser";
+import { ChatRepository } from "@/modules/chat/chat.repository";
+import { UserRepository } from "@/modules/user/user.repository";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { Fragment, Key } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { recruitCard } from "../../../../../types/recruitCard";
 
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
-  recruit: any;
+  recruit: recruitCard;
   index: number;
 };
 
@@ -15,6 +22,47 @@ export const CreateDetailModal: React.FC<Props> = ({
   recruit,
   index,
 }): JSX.Element => {
+  const userStateVal = useRecoilValue(UserState);
+  const [userState, setUserState] = useRecoilState(UserState);
+  const { certainUser: recruitUser } = useCertainUser(recruit.user_id);
+  const router = useRouter();
+
+  const applyFor = async () => {
+    if (!userStateVal?.uid || !userStateVal?.name)
+      throw new Error("UserStateのuidかnameが空");
+    const roomId = `${userStateVal?.uid}*${recruit.user_id}`;
+
+    // この辺の処理はrepositoryとかserviceに切り出したい
+    const message =
+      "初めまして！ぜひ一度話を聞いてみたいと思い、DMさせてもらいました！";
+    await ChatRepository.post(
+      userStateVal.uid,
+      userStateVal.name,
+      roomId,
+      message
+    );
+    await UserRepository.update(userStateVal?.uid, {
+      ...userStateVal,
+      room_ids: userStateVal.room_ids
+        ? [...userStateVal.room_ids, roomId]
+        : [roomId],
+    });
+    if (!recruitUser) throw new Error("recruitUserなし");
+    await UserRepository.update(recruit.user_id, {
+      ...recruitUser,
+      room_ids: recruitUser.room_ids
+        ? [...recruitUser.room_ids, roomId]
+        : [roomId],
+    });
+    setUserState((prev): any => {
+      return {
+        ...prev,
+        room_ids: prev?.room_ids ? [...prev.room_ids, roomId] : [roomId],
+      };
+    });
+    router.push(`/chat/${roomId}`);
+  };
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -46,7 +94,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                   <div className="flex justify-between items-center py-3 px-4">
                     <div className="flex justify-end object-cover object-center">
                       <p className="font-zen font-regular">
-                        {recruit[index].timestamp}
+                        {`${recruit.timestamp}`}
                       </p>
                     </div>
                   </div>
@@ -62,12 +110,12 @@ export const CreateDetailModal: React.FC<Props> = ({
                     <div className="flex justify-center object-cover object-center">
                       <div className="flex flex-col">
                         <h3 className="font-zen font-regular text-1xl lg:text-3xl">
-                          {recruit[index].headline}
+                          {recruit.headline}
                         </h3>
                       </div>
                     </div>
                     <div className="flex justify-center object-cover object-center mt-10 mx-20">
-                      {recruit[index].programing_skills?.map(
+                      {recruit.programing_skills?.map(
                         (skill: { value: string }, index: Key) => (
                           <div
                             key={index}
@@ -83,15 +131,15 @@ export const CreateDetailModal: React.FC<Props> = ({
                     <div className="flex justify-center mt-10 object-cover object-center">
                       <div className="flex flex-col">
                         <p className="font-zen font-light mx-10">
-                          {recruit[index].recruitment_details}
+                          {recruit.recruitment_details}
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-end items-center gap-x-2 py-3 px-4 dark:border-gray-700">
-                    <a
+                    <button
                       className="py-1 pl-3 pr-1 mb-1 inline-flex justify-center items-center gap-2 rounded-xl border border-transparent  bg-secondary-color font-zen text-black hover:bg-tertiary-color focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all"
-                      href=""
+                      onClick={applyFor}
                     >
                       話を聞いてみたい
                       <Image
@@ -100,7 +148,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                         width={50}
                         height={50}
                       />
-                    </a>
+                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
