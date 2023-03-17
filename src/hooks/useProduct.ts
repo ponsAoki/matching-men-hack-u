@@ -10,7 +10,7 @@ export const useProducts = () => {
       const fetchedProducts = await ProductRepositry.findMany();
       setProducts(fetchedProducts)
     })()
-  })
+  }, [])
 
   return { products }
 }
