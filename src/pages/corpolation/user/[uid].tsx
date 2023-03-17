@@ -1,7 +1,6 @@
 import { HeaderLine } from "@/components/elements/commons/header/Header";
 import { Loading } from "@/components/pages/Loading";
 import { UserRepository } from "@/modules/user/user.repository";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { User } from "../../../../types/user";
@@ -24,8 +23,8 @@ const userDetail = () => {
   return (
     <>
       <HeaderLine />
-      <div className="flex justify-center w-full my-5">
-        <div className="flex-col w-3/5 justify-center mt-10 rounded-lg bg-white">
+      <div className="font-caveat flex justify-center w-full my-5">
+        <div className="flex-col w-1/2 justify-center mt-10 rounded-2xl bg-white">
           <div className="text-center text-2xl my-5">
             <p className="mb-2">名前</p>
             <p className="">{user?.name}</p>

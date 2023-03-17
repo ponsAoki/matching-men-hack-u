@@ -1,8 +1,11 @@
+import { ProductList } from "@/components/pages/corporation/ProductList"
 
 const productList = () => {
 
   return (
-    <><p>sssssss</p></>
+    <>
+      <ProductList />
+    </>
   )
 }
 

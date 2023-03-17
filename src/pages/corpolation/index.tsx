@@ -20,7 +20,9 @@ const corpolationHome = () => {
     <>
       <CorporateHeaderLine />
       <UserList />
-      <button onClick={authRepository.logOut}>ログアウト</button>
+      <div className="justify-center flex mt-10">
+        <button className="bg-green-50 p-4 rounded-md" onClick={authRepository.logOut}>ログアウト</button>
+      </div>
     </>
   )
 }

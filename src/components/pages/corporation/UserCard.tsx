@@ -13,7 +13,7 @@ export const UserCard = ({uid, name, university, programingSkills, github, gradu
 
   return (
     <>
-      <div className="group group relative mb-2 h-full w-100 border overflow-hidden rounded-3xl bg-white lg:mb-3">
+      <div className="font-caveat group group relative mb-2 h-full w-100 border overflow-hidden rounded-3xl bg-white lg:mb-3">
         <div className="flex justify-center">
           <Image src="/avatar.gif" width={50} height={50} alt="avatar" />
         </div>
