@@ -1,7 +1,2 @@
-export const GRADUATION_YEARS = [
-  { year: "23年度", selected: false },
-  { year: "24年度", selected: false },
-  { year: "25年度", selected: false },
-  { year: "26年度", selected: false },
-  { year: "その他", selected: false },
-];
+export const APPLY_FIRST_MESSAGE =
+  "初めまして！ぜひ一度話を聞いてみたいと思い、DMさせてもらいました！";
