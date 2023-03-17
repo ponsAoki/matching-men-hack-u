@@ -27,7 +27,7 @@ export const ChatPage = ({ senderStateVal }: ChatPageProps): JSX.Element => {
       );
       setChatOpponents(opponents);
     })();
-  }, [senderStateVal?.room_ids]);
+  }, [senderStateVal.uid]);
 
   useEffect(() => {
     (async () => {

@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     setUid(user?.uid);
-  }, [user]);
+  }, [user?.uid]);
 
   if (!uid) return <Loading />;
   // return <Main />;

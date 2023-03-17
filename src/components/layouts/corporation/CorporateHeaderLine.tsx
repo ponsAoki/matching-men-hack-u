@@ -14,7 +14,7 @@ export const CorporateHeaderLine = (): JSX.Element => {
     if (corpolationStateVal?.room_ids) {
       setArbitraryRoomId(corpolationStateVal.room_ids[0]);
     }
-  }, [corpolationStateVal?.room_ids]);
+  }, [corpolationStateVal?.uid]);
 
   return (
     <div className="mx-auto">

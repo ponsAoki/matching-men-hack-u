@@ -14,7 +14,7 @@ export const HeaderLine = (): JSX.Element => {
     if (userStateVal?.room_ids) {
       setArbitraryRoomId(userStateVal.room_ids[0]);
     }
-  }, [userStateVal?.room_ids]);
+  }, [userStateVal?.uid]);
 
   return (
     <div className="mx-auto">
