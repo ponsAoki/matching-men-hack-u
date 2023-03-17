@@ -8,19 +8,21 @@ import Image from "next/image";
 
 export const SignUp = () => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    authRepository.signUpWithEmail(email, password).then(() => router.push('/'));
+    authRepository
+      .signUpWithEmail(email, password)
+      .then(() => router.push("/"));
   };
 
-  const handleChangeEmail = (event: {target: HTMLInputElement}) => {
+  const handleChangeEmail = (event: { target: HTMLInputElement }) => {
     setEmail(event.target.value);
   };
 
-  const handleChangePassword = (event: {target: HTMLInputElement}) => {
+  const handleChangePassword = (event: { target: HTMLInputElement }) => {
     setPassword(event.target.value);
   };
 
@@ -30,13 +32,15 @@ export const SignUp = () => {
         <div className="flex justify-center">
           <div className="flex flex-col items-center w-screen">
             <AuthButton
-              src="/Google-Icon-PNG_rwscww 1.png"
-              onClick={() => authRepository.signInWithGoogle().then(() => router.push('/'))}
+              src="/home.png"
+              onClick={() =>
+                authRepository.signInWithGoogle().then(() => router.push("/"))
+              }
             >
               Continue with Google
             </AuthButton>
             <AuthButton
-              src="/kisspng-computer-icons-logo-portable-network-graphics-clip-icons-for-free-iconza-circle-social-5b7fe46b4ec817 1.png"
+              src="/github-mark.png"
               onClick={authRepository.signWithGithub}
             >
               Continue with GitHub
@@ -69,7 +73,12 @@ export const SignUp = () => {
             onChange={handleChangePassword}
           />
           <div className="flex justify-center mt-10">
-            <button type="submit" className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center">アカウントを作る</button>
+            <button
+              type="submit"
+              className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center"
+            >
+              アカウントを作る
+            </button>
           </div>
         </form>
         <div className="flex justify-center">
