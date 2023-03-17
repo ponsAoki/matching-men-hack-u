@@ -1,15 +1,22 @@
 import { FieldValue } from "firebase/firestore";
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
   genre: string;
-  detailInfo: string
+  detailInfo: string;
   filePath: string;
   user_id: string;
-  createDate: FieldValue
-}
-export const ProductCard = ({ genre, detailInfo, filePath, user_id, createDate }: Props) => {
+  createDate: FieldValue;
+};
+export const ProductCard = ({
+  genre,
+  detailInfo,
+  filePath,
+  user_id,
+  createDate,
+}: Props) => {
+  console.log(filePath);
 
   return (
     <>
@@ -19,12 +26,16 @@ export const ProductCard = ({ genre, detailInfo, filePath, user_id, createDate }
         </div>
         <div className="flex flex-col justify-center ">
           <p className="m-auto p-1">{genre ? `種類: ${genre}` : "No Genre"}</p>
-          <p className="m-auto p-1">{detailInfo ? `詳細: ${detailInfo}` : "No DetailInfo"}</p>
+          <p className="m-auto p-1">
+            {detailInfo ? `詳細: ${detailInfo}` : "No DetailInfo"}
+          </p>
           <Link href={filePath} className="flex justify-center">
-            <p className="table bg-green-50 rounded-lg p-3">完成品の動画/画像リンク取得</p>
+            <p className="table bg-green-50 rounded-lg p-3">
+              完成品の動画/画像リンク取得
+            </p>
           </Link>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
