@@ -1,6 +1,8 @@
 import { realTimeDb } from "@/libs/firebase";
 import { onValue, push, ref, serverTimestamp, set } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
+import { CorpolationRepositry } from "../corpolation/corpolation.repository";
+import { UserRepository } from "../user/user.repository";
 
 export const ChatRepository = {
   async findOneRoomHistory(
@@ -21,21 +23,39 @@ export const ChatRepository = {
     });
   },
 
-  findManyRoomHistories(roomIds: string[], senderUid: string) {
-    const resRoomHistories = roomIds.map((roomId) => {
-      const res: any = { roomId: roomId };
-      onValue(ref(realTimeDb, roomId), (snapShot) => {
-        let opponentCount = 0;
-        snapShot.forEach((childSnapShot) => {
-          const post = childSnapShot.val();
-          if (post.senderUid !== senderUid && opponentCount < 1) {
-            res.opponentName = post.senderName;
-            opponentCount++;
-          }
+  async findManyRooms(roomIds: string[], senderUid: string): Promise<any> {
+    const resRoomHistories = await Promise.all(
+      roomIds.map(async (roomId) => {
+        const opponentUid = roomId.split("*").find((uid) => uid !== senderUid);
+        if (!opponentUid) throw new Error("相手がいない");
+        const opponentUser = await UserRepository.findOneByUid(opponentUid);
+        const opponentCorpolation = await CorpolationRepositry.findOneByUid(
+          opponentUid
+        );
+        const res = {
+          roomId: roomId,
+          opponentName:
+            opponentUser.name ?? opponentCorpolation.corpolation_name,
+        };
+        /**
+         * 最新のメッセージも表示したいってなったら、これ以降も実装したい
+        onValue(ref(realTimeDb, roomId), (snapShot) => {
+          let opponentCount = 0;
+          console.log(snapShot);
+          console.log(snapShot.val());
+          snapShot.forEach((childSnapShot) => {
+            console.log(childSnapShot);
+            const post = childSnapShot.val();
+            if (post.senderUid !== senderUid && opponentCount < 1) {
+              res.opponentName = post.senderName;
+              opponentCount++;
+            }
+          });
         });
-      });
-      return res;
-    });
+         */
+        return res;
+      })
+    );
 
     return resRoomHistories;
   },
