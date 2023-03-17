@@ -11,7 +11,7 @@ const corpolationHome = () => {
 
   useEffect(() => {
     setUid(corpolation?.uid);
-  }, [corpolation]);
+  }, [corpolation?.uid]);
 
   if (!uid) return <Loading />;
 

@@ -27,7 +27,7 @@ export const ChatPage = ({ senderStateVal }: ChatPageProps): JSX.Element => {
       );
       setChatOpponents(opponents);
     })();
-  }, [senderStateVal?.room_ids]);
+  }, [senderStateVal.uid]);
 
   useEffect(() => {
     (async () => {
@@ -36,7 +36,7 @@ export const ChatPage = ({ senderStateVal }: ChatPageProps): JSX.Element => {
       await ChatRepository.findOneRoomHistory(roomId, setChatHistories);
       setIsLoading(false);
     })();
-  }, [roomId, setIsLoading]);
+  }, [roomId]);
 
   if (isLoading) return <Loading />;
 

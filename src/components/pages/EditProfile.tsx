@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import { useRecoilValue } from "recoil";
+import { RecruitCard } from "../elements/commons/cards/RecruitCard";
 import { PlainInput } from "../elements/commons/inputs/PlainInput";
 import { ConfirmModal } from "../elements/commons/modals/ConfirmModal";
-import { RecruitCard } from "../elements/commons/cards/RecruitCard";
 import { EditProfileModal } from "../elements/Profile/EditProfileModal";
 import { FormField } from "../elements/Profile/FormField";
 import { GraduationYearRadio } from "../elements/Profile/GraduationYearRadio";
@@ -41,7 +41,7 @@ export const EditProfile = (): JSX.Element => {
       setUser(userStateVal);
       setIsLoading(false);
     }
-  }, [userStateVal]);
+  }, [userStateVal?.uid]);
 
   if (!user || isLoading) return <Loading />;
 
