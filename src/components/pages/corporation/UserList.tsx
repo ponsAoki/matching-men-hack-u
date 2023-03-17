@@ -1,12 +1,11 @@
-import { useUser } from "@/hooks/useUser"
+import { useUser } from "@/hooks/useUser";
 import { Loading } from "../Loading";
 import { UserCard } from "./UserCard";
 
 export const UserList = () => {
   const { users } = useUser();
 
-  if(!users) return <Loading />
-
+  if (!users) return <Loading />;
 
   return (
     <>
@@ -15,14 +14,15 @@ export const UserList = () => {
         {users.map((user) => {
           return (
             <UserCard
+              key={user.uid}
               uid={user.uid}
               name={user.name}
               university={user.university}
               programingSkills={user.programingSkills}
             />
-          )
+          );
         })}
       </div>
     </>
-  )
-}
+  );
+};

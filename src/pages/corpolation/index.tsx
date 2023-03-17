@@ -5,7 +5,7 @@ import { useCorpolateAuth } from "@/hooks/useCorpolateAuth";
 import { authRepository } from "@/modules/auth.repository";
 import { useEffect, useState } from "react";
 
-const corpolationHome = () => {
+const CorpolationHome = () => {
   const corpolation = useCorpolateAuth();
   const [uid, setUid] = useState<string>();
 
@@ -20,10 +20,15 @@ const corpolationHome = () => {
       <CorporateHeaderLine />
       <UserList />
       <div className="justify-center flex mt-10">
-        <button className="bg-green-50 p-4 rounded-md" onClick={authRepository.logOut}>ログアウト</button>
+        <button
+          className="bg-green-50 p-4 rounded-md"
+          onClick={authRepository.logOut}
+        >
+          ログアウト
+        </button>
       </div>
     </>
   );
 };
 
-export default corpolationHome;
+export default CorpolationHome;
