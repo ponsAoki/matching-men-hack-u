@@ -1,4 +1,5 @@
 import { HeaderLine } from "@/components/elements/commons/header/Header";
+import { CorporateHeaderLine } from "@/components/layouts/corporation/CorporateHeaderLine";
 import { UserList } from "@/components/pages/corporation/UserList";
 import { Loading } from "@/components/pages/Loading";
 import { useCorpolateAuth } from "@/hooks/useCorpolateAuth";
@@ -17,7 +18,7 @@ const corpolationHome = () => {
 
   return (
     <>
-      <HeaderLine />
+      <CorporateHeaderLine />
       <UserList />
       <button onClick={authRepository.logOut}>ログアウト</button>
     </>

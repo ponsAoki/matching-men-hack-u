@@ -19,8 +19,8 @@ export const UserCard = ({uid, name, university, programingSkills, github, gradu
         </div>
         <div className="flex flex-col justify-center ">
           <p className="m-auto p-1">{name ? name : "No Name"}</p>
-          { university ? <p className="m-auto p-1">{university}</p> : <p className="m-auto p-1">No University...</p>}
-          { programingSkills ? <div className="flex">
+          <p className="m-auto p-1">{university ? university : "No Univercity"}</p>
+          { programingSkills ? <div className="flex justify-center">
             {
               programingSkills?.map((skill) => {
                 return (

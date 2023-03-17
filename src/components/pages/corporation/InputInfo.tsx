@@ -1,6 +1,7 @@
 import { SubmitButton } from "@/components/elements/commons/buttons/SubmitButton";
 import { PlainInput } from "@/components/elements/commons/inputs/PlainInput";
 import { CorpolationState, CorpolationStateType } from "@/global-states/corpolateAtom";
+import { useCorpolateAuth } from "@/hooks/useCorpolateAuth";
 import { CorpolationRepositry } from "@/modules/corpolation/corpolation.repository";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form"
@@ -9,9 +10,9 @@ import { Corpolation } from "../../../../types/corpolation";
 
 
 export const InputInfo = () => {
+  const corpolation = useCorpolateAuth();
   const router = useRouter()
   const { handleSubmit, register } = useForm();
-  const  corpolation = useRecoilValue(CorpolationState)
 
   const onSubmit = (submitData: any) => {
     let data: Corpolation = {
@@ -23,6 +24,8 @@ export const InputInfo = () => {
     CorpolationRepositry.update(corpolation!.uid, data);
     router.push('/corpolation')
   }
+
+console.log(corpolation)
 
   return (
     <>
