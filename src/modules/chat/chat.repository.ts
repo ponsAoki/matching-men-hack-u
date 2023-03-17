@@ -35,7 +35,7 @@ export const ChatRepository = {
         const res = {
           roomId: roomId,
           opponentName:
-            opponentUser.name ?? opponentCorpolation.corpolation_name,
+            opponentUser?.name ?? opponentCorpolation?.corpolation_name,
         };
         /**
          * 最新のメッセージも表示したいってなったら、これ以降も実装したい
