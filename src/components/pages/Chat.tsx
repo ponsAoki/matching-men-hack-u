@@ -1,31 +1,33 @@
-import { UserState } from "@/global-states/atoms";
 import { ChatRepository } from "@/modules/chat/chat.repository";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilValue } from "recoil";
 import { Loading } from "./Loading";
 
-export const ChatPage = (): JSX.Element => {
+type ChatPageProps = {
+  senderStateVal: any;
+};
+
+export const ChatPage = ({ senderStateVal }: ChatPageProps): JSX.Element => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const { roomId } = router.query;
-  const userStateVal = useRecoilValue(UserState);
   const [chatHistories, setChatHistories] = useState<any[]>();
   const [chatOpponents, setChatOpponents] = useState<any[]>();
 
   useEffect(() => {
-    if (userStateVal?.room_ids) {
-      const opponents = ChatRepository.findManyRoomHistories(
-        userStateVal.room_ids,
-        userStateVal.uid
+    (async () => {
+      if (!senderStateVal?.room_ids) return;
+      const opponents = await ChatRepository.findManyRooms(
+        senderStateVal.room_ids,
+        senderStateVal.uid
       );
       setChatOpponents(opponents);
-    }
-  }, [userStateVal?.room_ids]);
+    })();
+  }, [senderStateVal?.room_ids]);
 
   useEffect(() => {
     (async () => {
@@ -39,25 +41,35 @@ export const ChatPage = (): JSX.Element => {
   if (isLoading) return <Loading />;
 
   const onMessageSubmit = async (submitData: any) => {
-    if (!userStateVal?.uid || !userStateVal?.name)
-      throw new Error("UserStateのuidかnameが空");
+    if (
+      !senderStateVal?.uid ||
+      !(senderStateVal?.name || senderStateVal?.corpolation_name)
+    )
+      throw new Error("senderStateのuidかnameが空");
     await ChatRepository.post(
-      userStateVal.uid,
-      userStateVal.name,
+      senderStateVal.uid,
+      senderStateVal.name ?? senderStateVal.corpolation_name,
       roomId as string,
       submitData.message
     );
+    reset();
   };
 
   return (
     <div className="flex w-screen h-screen">
       {/* いろんな人とのやりとりリスト */}
-      <div className="w-1/3 flex flex-col gap-8 p-8">
+      <div className="w-1/3 flex flex-col p-8 overflow-y-auto">
         {chatOpponents?.map((opponent) => (
           <Link
             key={opponent.roomId}
-            href={`/chat/${opponent.roomId}`}
-            className="flex items-center gap-4 border-b border-black pb-4"
+            href={
+              senderStateVal.name
+                ? `/chat/${opponent.roomId}`
+                : `/corpolation/chat/${opponent.roomId}`
+            }
+            className={`flex items-center gap-4 border-b border-black p-8 ${
+              opponent.roomId === roomId && "bg-secondary-color"
+            }`}
           >
             <Image
               src="/avatar.gif"
@@ -71,13 +83,13 @@ export const ChatPage = (): JSX.Element => {
         ))}
       </div>
       {/* 一対一のルーム */}
-      <div className="w-2/3 grid grid-cols-1 gap-8 p-8">
+      <div className="w-2/3 grid grid-cols-1 gap-8 pb-24 p-8 overflow-auto">
         {chatHistories?.map((chat: any) => (
           <div
             key={`${String(chat.timestamp)}`}
             className={`w-1/2
                 ${
-                  userStateVal?.uid === chat.senderUid
+                  senderStateVal?.uid === chat.senderUid
                     ? "justify-self-end"
                     : "justify-self-start"
                 }
@@ -95,7 +107,7 @@ export const ChatPage = (): JSX.Element => {
             </div>
             <div
               className={`ml-10 p-4 bg-white rounded-xl ${
-                userStateVal?.uid === chat.senderUid
+                senderStateVal?.uid === chat.senderUid
                   ? "rounded-tr-none"
                   : "rounded-tl-none"
               }`}
@@ -104,24 +116,27 @@ export const ChatPage = (): JSX.Element => {
             </div>
           </div>
         ))}
-        {/* 送信フォーム */}
-        <form className="mr-12" onSubmit={handleSubmit(onMessageSubmit)}>
-          <div className="flex bg-gray-100 rounded-2xl">
-            <textarea
-              className="w-full bg-inherit rounded-2xl outline-none p-4"
-              {...register("message")}
-            />
-            <button type="submit">
-              <Image
-                src="/paperplane.gif"
-                alt="メッセージ送信ボタンのロゴ"
-                width={40}
-                height={40}
-              />
-            </button>
-          </div>
-        </form>
       </div>
+      {/* 送信フォーム */}
+      <form
+        className="fixed bottom-4 right-4 w-3/5"
+        onSubmit={handleSubmit(onMessageSubmit)}
+      >
+        <div className="flex bg-gray-100 rounded-2xl">
+          <textarea
+            className="w-full bg-inherit rounded-2xl outline-none p-4"
+            {...register("message")}
+          />
+          <button type="submit">
+            <Image
+              src="/paperplane.gif"
+              alt="メッセージ送信ボタンのロゴ"
+              width={40}
+              height={40}
+            />
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

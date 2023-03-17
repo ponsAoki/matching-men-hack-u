@@ -1,4 +1,3 @@
-import { HeaderLine } from "@/components/elements/commons/header/Header";
 import { CorporateHeaderLine } from "@/components/layouts/corporation/CorporateHeaderLine";
 import { UserList } from "@/components/pages/corporation/UserList";
 import { Loading } from "@/components/pages/Loading";
@@ -12,7 +11,7 @@ const corpolationHome = () => {
 
   useEffect(() => {
     setUid(corpolation?.uid);
-  }, [corpolation])
+  }, [corpolation]);
 
   if (!uid) return <Loading />;
 
@@ -22,7 +21,7 @@ const corpolationHome = () => {
       <UserList />
       <button onClick={authRepository.logOut}>ログアウト</button>
     </>
-  )
-}
+  );
+};
 
 export default corpolationHome;

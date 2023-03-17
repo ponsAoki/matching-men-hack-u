@@ -1,3 +1,4 @@
+import { APPLY_FIRST_MESSAGE } from "@/constants/constants";
 import { UserState } from "@/global-states/atoms";
 import { useCertainUser } from "@/hooks/useCertainUser";
 import { ChatRepository } from "@/modules/chat/chat.repository";
@@ -33,13 +34,11 @@ export const CreateDetailModal: React.FC<Props> = ({
     const roomId = `${userStateVal?.uid}*${recruit.user_id}`;
 
     // この辺の処理はrepositoryとかserviceに切り出したい
-    const message =
-      "初めまして！ぜひ一度話を聞いてみたいと思い、DMさせてもらいました！";
     await ChatRepository.post(
       userStateVal.uid,
       userStateVal.name,
       roomId,
-      message
+      APPLY_FIRST_MESSAGE
     );
     await UserRepository.update(userStateVal?.uid, {
       ...userStateVal,
@@ -94,7 +93,7 @@ export const CreateDetailModal: React.FC<Props> = ({
                   <div className="flex justify-between items-center py-3 px-4">
                     <div className="flex justify-end object-cover object-center">
                       <p className="font-zen font-regular">
-                        {recruit.timestamp.toDate().toLocaleString()}
+                        {new Date(recruit.timestamp).toLocaleString()}
                       </p>
                     </div>
                   </div>
