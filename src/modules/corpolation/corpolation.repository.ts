@@ -13,4 +13,4 @@ export const CorpolationRepositry = {
     const ref = doc(db, `corpolations/${uid}`);
     await updateDoc(ref, data);
   },
-};
+}
