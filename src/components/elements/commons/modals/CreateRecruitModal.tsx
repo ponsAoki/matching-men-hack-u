@@ -41,6 +41,7 @@ export const CreateRecruitModal: React.FC<Props> = ({
       user_id: user,
     };
     recruitRepository.createRecruitment(recruit_data);
+    location.reload()
     closeModal();
   };
 

@@ -34,6 +34,8 @@ export const UploadProductModal = ({ isOpen, closeModal }: Props) => {
             })
           })
     })
+    location.reload()
+    closeModal()
   }
 
 

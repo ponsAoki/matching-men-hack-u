@@ -15,7 +15,7 @@ export const SignUp = () => {
     event.preventDefault();
     authRepository
       .signUpWithEmail(email, password)
-      .then(() => router.push("/"));
+      .then(() => router.push("/profiles/otherThanTech"));
   };
 
   const handleChangeEmail = (event: { target: HTMLInputElement }) => {
@@ -34,7 +34,7 @@ export const SignUp = () => {
             <AuthButton
               src="/home.png"
               onClick={() =>
-                authRepository.signInWithGoogle().then(() => router.push("/"))
+                authRepository.signInWithGoogle().then(() => router.push("/profiles/otherThanTech"))
               }
             >
               Continue with Google
