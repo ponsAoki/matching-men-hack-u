@@ -16,7 +16,7 @@ export const GithubInfoPage = (): JSX.Element => {
     //※デプロイまでには↓エラーはスローしないようにしたい
     if (!userState?.uid) throw new Error("userState.uidがないです！");
     await UserRepository.update(userState.uid, { ...userState, ...submitData });
-    router.push("/");
+    router.push("/homeScreen");
   };
 
   return (

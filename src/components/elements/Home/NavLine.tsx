@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { UploadProductModal } from "../UploadProductModal";
+import { UploadProductModal } from "../commons/modals/UploadProductModal";
 
 export const NavLine = () => {
   const [isOpen, setIsOpen] = useState(false);

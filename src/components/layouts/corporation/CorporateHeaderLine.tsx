@@ -20,7 +20,7 @@ export const CorporateHeaderLine = (): JSX.Element => {
     <div className="mx-auto">
       <header className="border-b border-black/20 pt-5 w-full">
         <div className="font-caveat mx-auto flex items-center justify-between">
-          <Link href={"/"}>
+          <Link href="/corpolation">
             <p className="text-5xl pl-10">UNITE</p>
           </Link>
           <div className="flex mr-[4%]">

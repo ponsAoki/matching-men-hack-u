@@ -1,30 +1,21 @@
 import { authRepository } from "@/modules/auth.repository";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { AuthButton } from "../elements/authElements/AuthButton";
 import { AuthInput } from "../elements/authElements/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
 
 export const SignUp = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit} = useForm();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = (data: any) => {
     authRepository
-      .signUpWithEmail(email, password)
-      .then(() => router.push("/"));
+      .signUpWithEmail(data.email, data.password)
+      .then(() => router.push("/profiles/otherThanTech"));
   };
 
-  const handleChangeEmail = (event: { target: HTMLInputElement }) => {
-    setEmail(event.target.value);
-  };
-
-  const handleChangePassword = (event: { target: HTMLInputElement }) => {
-    setPassword(event.target.value);
-  };
 
   return (
     <div className="flex justify-center h-screen content-center">
@@ -34,7 +25,7 @@ export const SignUp = () => {
             <AuthButton
               src="/home.png"
               onClick={() =>
-                authRepository.signInWithGoogle().then(() => router.push("/"))
+                authRepository.signInWithGoogle().then(() => router.push("/profiles/otherThanTech"))
               }
             >
               Continue with Google
@@ -57,20 +48,20 @@ export const SignUp = () => {
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <form className="flex-col" onSubmit={handleSubmit}>
+        <form className="flex-col" onSubmit={handleSubmit(onSubmit)}>
           <AuthInput
-            label="メールアドレス"
+            labelText="メールアドレス"
             placeholder="example@gmail.com"
-            email={email}
             buttonType="email"
-            onChange={handleChangeEmail}
+            register={register}
+            registerLabel="email"
           />
           <AuthInput
-            label="パスワード"
+            labelText="パスワード"
             placeholder="More than 10 letters"
-            email={password}
             buttonType="password"
-            onChange={handleChangePassword}
+            register={register}
+            registerLabel="password"
           />
           <div className="flex justify-center mt-10">
             <button

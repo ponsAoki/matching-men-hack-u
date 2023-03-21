@@ -1,14 +1,26 @@
 import { AddCardButton } from "@/components/elements/commons/buttons/AddCardButton";
 import { HeaderLine } from "@/components/elements/commons/header/Header";
+import { useAuth } from "@/hooks/useAuth";
+import { authRepository } from "@/modules/auth.repository";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NewOrder } from "../elements/commons/buttons/NewOrder";
 import { Search } from "../elements/commons/inputs/Search";
 import { RecruitList } from "../elements/Home/RecruitList";
-import { UploadProductModal } from "../elements/UploadProductModal";
+import { UploadProductModal } from "../elements/commons/modals/UploadProductModal";
+import { Loading } from "./Loading";
 
 export const HomeScreen = () => {
+  const user = useAuth();
+  const [uid, setUid] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setUid(user?.uid);
+  }, [user?.uid]);
+
+  if (!uid) return <Loading />;
+
 
   const openModal = () => {
     setIsOpen(true);
@@ -59,6 +71,14 @@ export const HomeScreen = () => {
         </div>
       </div>
       <AddCardButton />
+      <div className="justify-center flex mt-10">
+        <button
+          className="bg-green-50 p-4 rounded-md"
+          onClick={authRepository.logOut}
+        >
+          ログアウト
+        </button>
+      </div>
 
 
       <UploadProductModal
