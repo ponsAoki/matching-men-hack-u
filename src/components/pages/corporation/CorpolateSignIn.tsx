@@ -1,27 +1,19 @@
 import { authRepository } from "@/modules/auth.repository";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { AuthInput } from "@/components/elements/authElements/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
 
 export const CorpolateSignIn: React.FC = (): JSX.Element => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit} = useForm();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    authRepository.signInWithEmail(email, password).then(() => router.push('/corpolation'));
+  const onClick = (data: any) => {
+    authRepository.signInWithEmail(data.email, data.password)
+      .then(() => router.push('/corpolation'));
   };
 
-  const handleChangeEmail = (event: {target: HTMLInputElement}) => {
-    setEmail(event.target.value);
-  };
-
-  const handleChangePassword = (event: {target: HTMLInputElement}) => {
-    setPassword(event.target.value);
-  };
 
   return (
     <div className="flex justify-center h-screen content-center">
@@ -37,20 +29,20 @@ export const CorpolateSignIn: React.FC = (): JSX.Element => {
           <div className="border-t w-full border-black"></div>
         </div>
 
-        <form className="flex-col" onSubmit={handleSubmit}>
+        <form className="flex-col" onSubmit={handleSubmit(onClick)}>
           <AuthInput
-            label="メールアドレス"
+            labelText="メールアドレス"
             placeholder="example@gmail.com"
-            email={email}
             buttonType="email"
-            onChange={handleChangeEmail}
+            register={register}
+            registerLabel="email"
           />
           <AuthInput
-            label="パスワード"
+            labelText="パスワード"
             placeholder="More than 10 letters"
-            email={password}
             buttonType="password"
-            onChange={handleChangePassword}
+            register={register}
+            registerLabel="password"
           />
           <div className="flex justify-center mt-10">
             <button type="submit" className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center">ログイン</button>

@@ -7,8 +7,8 @@ import Image from 'next/image'
 import { Fragment } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
-import { PlainInput } from './commons/inputs/PlainInput'
-import { PlainTextArea } from './inputs/PlainTextarea'
+import { PlainInput } from '../inputs/PlainInput'
+import { PlainTextArea } from '../inputs/PlainTextarea'
 
 type Props = {
   isOpen: boolean

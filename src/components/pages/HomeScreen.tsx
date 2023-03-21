@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { NewOrder } from "../elements/commons/buttons/NewOrder";
 import { Search } from "../elements/commons/inputs/Search";
 import { RecruitList } from "../elements/Home/RecruitList";
-import { UploadProductModal } from "../elements/UploadProductModal";
+import { UploadProductModal } from "../elements/commons/modals/UploadProductModal";
 import { Loading } from "./Loading";
 
 export const HomeScreen = () => {

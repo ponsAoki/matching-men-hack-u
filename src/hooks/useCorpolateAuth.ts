@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { UserState } from "@/global-states/atoms";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/libs/firebase";
 import { useRouter } from "next/router";
@@ -44,6 +43,5 @@ export const useCorpolateAuth = (): UserStateType => {
     return () => unsub();
   }, []);
 
-  console.log(corpolation)
   return corpolation;
 };
