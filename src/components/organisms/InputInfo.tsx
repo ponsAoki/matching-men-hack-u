@@ -20,7 +20,7 @@ export const InputInfo = () => {
       introduction: submitData.introduction
     }
     CorporationRepositry.update(corporation!.uid, data);
-    router.push('/corpotation')
+    router.push('/corporation')
   }
 
   return (
