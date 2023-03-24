@@ -1,4 +1,4 @@
-import { HomeScreen } from "@/components/pages/HomeScreen";
+import { HomeScreen } from "@/components/templetes/user/HomeScreen";
 
 const homeScreen = () => {
 

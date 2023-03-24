@@ -1,6 +1,6 @@
 import { recruitRepository } from "@/modules/recruit/recruit.repository";
 import { useEffect, useState } from "react";
-import { recruitCard } from "../../types/recruitCard";
+import { recruitCard } from "../types/recruitCard";
 
 export const useRecruit = () => {
   const [recruits, setRecruits] = useState<recruitCard[]>([]);

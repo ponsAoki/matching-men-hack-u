@@ -6,7 +6,7 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { User } from "../../../types/user";
+import { User } from "../../types/user";
 
 export const UserRepository = {
   async findOneByUid(uid: string): Promise<User> {

@@ -8,7 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { recruitCard } from "../../../types/recruitCard";
+import { recruitCard } from "../../types/recruitCard";
 
 export const recruitRepository = {
   //募集の一覧取得

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { UserStateType } from "@/global-states/atoms";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/libs/firebase";
-import { User } from "../../types/user";
+import { User } from "../types/user";
 
 
 export const useAuth = (): UserStateType => {

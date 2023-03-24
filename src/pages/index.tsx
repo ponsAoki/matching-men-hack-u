@@ -1,4 +1,4 @@
-import { UserOrCorporate } from "@/components/pages/UserOrCorporate";
+import { UserOrCorporate } from "@/components/templetes/common/UserOrCorporate";
 
 
 const Home = () => {

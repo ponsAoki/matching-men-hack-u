@@ -1,6 +1,6 @@
 import { db } from "@/libs/firebase";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
-import { Product } from "../../../types/product";
+import { Product } from "../../types/product";
 
 export const ProductRepositry = {
   //プロダクト一覧取得

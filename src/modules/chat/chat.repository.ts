@@ -1,7 +1,8 @@
 import { realTimeDb } from "@/libs/firebase";
 import { onValue, push, ref, serverTimestamp, set } from "firebase/database";
 import { Dispatch, SetStateAction } from "react";
-import { CorpolationRepositry } from "../corpolation/corpolation.repository";
+import { CorporationRepositry } from "../corporation/corporation.repository";
+
 import { UserRepository } from "../user/user.repository";
 
 export const ChatRepository = {
@@ -29,13 +30,13 @@ export const ChatRepository = {
         const opponentUid = roomId.split("*").find((uid) => uid !== senderUid);
         if (!opponentUid) throw new Error("相手がいない");
         const opponentUser = await UserRepository.findOneByUid(opponentUid);
-        const opponentCorpolation = await CorpolationRepositry.findOneByUid(
+        const opponentCorporation = await CorporationRepositry.findOneByUid(
           opponentUid
         );
         const res = {
           roomId: roomId,
           opponentName:
-            opponentUser?.name ?? opponentCorpolation?.corpolation_name,
+            opponentUser?.name ?? opponentCorporation?.corporation_name,
         };
         /**
          * 最新のメッセージも表示したいってなったら、これ以降も実装したい

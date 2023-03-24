@@ -1,6 +1,6 @@
 import { UserRepository } from "@/modules/user/user.repository";
 import { useEffect, useState } from "react";
-import { User } from "../../types/user";
+import { User } from "../types/user";
 
 export const useCertainUser = (uid: string) => {
   const [certainUser, setCertainUser] = useState<User>();

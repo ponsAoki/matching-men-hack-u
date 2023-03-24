@@ -1,6 +1,6 @@
 import { db } from "@/libs/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { ProgramingSkill } from "../../../types/programingSkill";
+import { ProgramingSkill } from "../../types/programingSkill";
 
 export const ProgramingSkillRepository = {
   async findMany(): Promise<ProgramingSkill[]> {
