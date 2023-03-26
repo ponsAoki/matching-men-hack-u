@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
-import { User } from "../../types/user";
+import { User } from "../types/user";
 export type UserStateType = User | null;
 
 export const { persistAtom } = recoilPersist({ key: "UserState" });

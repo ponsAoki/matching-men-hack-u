@@ -1,4 +1,4 @@
-import { OtherThanTechPage } from "@/components/pages/OtherThanTech";
+import { OtherThanTechPage } from "@/components/templetes/user/OtherThanTech";
 
 const OtherThanTech = (): JSX.Element => {
   return <OtherThanTechPage />;

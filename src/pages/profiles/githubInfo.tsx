@@ -1,4 +1,4 @@
-import { GithubInfoPage } from "@/components/pages/GithubInfo";
+import { GithubInfoPage } from "@/components/templetes/user/GithubInfo";
 
 const GithubInfo = (): JSX.Element => {
   return <GithubInfoPage />;

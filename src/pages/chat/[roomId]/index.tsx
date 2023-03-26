@@ -1,5 +1,5 @@
-import { HeaderLine } from "@/components/elements/commons/header/Header";
-import { ChatPage } from "@/components/pages/Chat";
+import { HeaderLine } from "@/components/organisms/Header";
+import { ChatPage } from "@/components/templetes/common/Chat";
 import { UserState } from "@/global-states/atoms";
 import { useRecoilValue } from "recoil";
 

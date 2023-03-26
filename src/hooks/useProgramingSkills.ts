@@ -1,6 +1,6 @@
 import { ProgramingSkillRepository } from "@/modules/programingSkill/programingSkill.repository";
 import { useEffect, useState } from "react";
-import { ProgramingSkill } from "../../types/programingSkill";
+import { ProgramingSkill } from "../types/programingSkill";
 
 export const useProgramingSkills = () => {
   const [programingSkills, setProgramingSkills] = useState<ProgramingSkill[]>(

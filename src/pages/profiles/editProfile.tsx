@@ -1,5 +1,5 @@
-import { HeaderLine } from "@/components/elements/commons/header/Header";
-import { EditProfile } from "@/components/pages/EditProfile";
+import { HeaderLine } from "@/components/organisms/Header";
+import { EditProfile } from "@/components/templetes/user/EditProfile";
 
 const EditProfilePage = (): JSX.Element => {
   return (
