@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
-export const HeaderLine = (): JSX.Element => {
+export const Header = (): JSX.Element => {
   const router = useRouter();
   const userStateVal = useRecoilValue(UserState);
   const [arbitraryRoomId, setArbitraryRoomId] = useState<string>();

@@ -1,4 +1,4 @@
-import { authRepository } from "@/modules/auth.repository";
+import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { AuthButton } from "../../atoms/AuthButton";

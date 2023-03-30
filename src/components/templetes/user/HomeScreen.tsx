@@ -1,14 +1,14 @@
 import { AddCardButton } from "@/components/atoms/AddCardButton";
-import { HeaderLine } from "@/components/organisms/Header";
 import { useAuth } from "@/hooks/useAuth";
-import { authRepository } from "@/modules/auth.repository";
+import { authRepository } from "@/modules/auth/auth.repository";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { NewOrder } from "../../atoms/NewOrder";
 import { Search } from "../../atoms/Search";
 import { RecruitList } from "../../organisms/RecruitList";
 import { UploadProductModal } from "../../organisms/UploadProductModal";
 import { Loading } from "../common/Loading";
+import { UserLayout } from "../layouts/UserLayout";
 
 export const HomeScreen = () => {
   const user = useAuth();
@@ -32,7 +32,6 @@ export const HomeScreen = () => {
 
   return (
     <>
-      <HeaderLine />
       <div className="mx-auto">
         <header className="border-b border-black/20 w-full">
           <div className="font-caveat mx-auto flex">
@@ -88,3 +87,8 @@ export const HomeScreen = () => {
     </>
   );
 };
+
+HomeScreen.getLayout = function getLayout(page: ReactElement) {
+  return <UserLayout>{page}</UserLayout>
+}
+

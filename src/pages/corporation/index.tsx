@@ -2,7 +2,7 @@ import { CorporateHeaderLine } from "@/components/organisms/CorporateHeaderLine"
 import { UserList } from "@/components/organisms/UserList";
 import { Loading } from "@/components/templetes/common/Loading";
 import { useCorporateAuth } from "@/hooks/useCorporateAuth";
-import { authRepository } from "@/modules/auth.repository";
+import { authRepository } from "@/modules/auth/auth.repository";
 import { useEffect, useState } from "react";
 
 const CorporationHome = () => {
