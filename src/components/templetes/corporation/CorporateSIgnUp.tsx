@@ -1,4 +1,4 @@
-import { authRepository } from "@/modules/auth.repository";
+import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
 import { AuthInput } from "@/components/atoms/AuthInput";
 import Link from "next/link";

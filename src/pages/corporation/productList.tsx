@@ -1,4 +1,6 @@
 import { ProductList } from "@/components/organisms/ProductList"
+import { CorporateLayout } from "@/components/templetes/layouts/CorporateLayout";
+import { ReactNode } from "react";
 
 const productList = () => {
 
@@ -9,4 +11,7 @@ const productList = () => {
   )
 }
 
+productList.getLayout = function getLayout(page: ReactNode) {
+  return <CorporateLayout>{page}</CorporateLayout>
+}
 export default productList;
