@@ -1,22 +1,24 @@
 import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { AuthButton } from "../../atoms/AuthButton";
-import { AuthInput } from "../../atoms/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { EmailPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
+
+type FormData = {
+  email: string;
+  password: string;
+}
 
 export const SignIn: React.FC = (): JSX.Element => {
-  const router = useRouter();
-  const { register, handleSubmit } = useForm()
 
-  //react-hook-formに変更する
-  const onSubmit = (data: any) => {
-    console.log(data.email)
+  const router = useRouter();
+
+  const onSubmit = ({email, password}: FormData) => {
     authRepository
-      .signInWithEmail(data.email, data.password)
-      .then(() => router.push("/homeScreen"));
+      .signInWithEmail(email, password)
+      .then(() => router.push("/homeScreen"))
   };
 
   return (
@@ -50,21 +52,32 @@ export const SignIn: React.FC = (): JSX.Element => {
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <form className="flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <EmailPasswordForm
+          onSubmit={onSubmit}
+          buttonText="ログイン"
+        />
+
+        {/* <form className="flex-col" onSubmit={handleSubmit(onSubmit)}>
           <AuthInput
             labelText="メールアドレス"
             placeholder="example@gmail.com"
             buttonType="email"
             register={register}
             registerLabel="email"
+            rules={{required: "*必須項目です"}}
+            errors={errors}
           />
+
           <AuthInput
             labelText="パスワード"
             placeholder="More than 10 letters"
             buttonType="password"
             register={register}
             registerLabel="password"
+            rules={{ required: "*必須項目です。", minLength: {value: 8, message: "*8文字以上で入力ください。"}}}
+            errors={errors}
           />
+
           <div className="flex justify-center mt-10">
             <button
               type="submit"
@@ -73,7 +86,7 @@ export const SignIn: React.FC = (): JSX.Element => {
               ログイン
             </button>
           </div>
-        </form>
+        </form> */}
         <div className="flex justify-center">
           <p>まだアカウントをお持ちでない方　</p>
           <Link href="/signUp" className="font-bold">

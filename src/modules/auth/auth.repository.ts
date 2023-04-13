@@ -26,6 +26,7 @@ export const authRepository = {
       await signInWithPopup(auth, provider)
     } catch (error) {
       alert("GitHub認証に失敗しました")
+      window.location.reload();
     }
   },
 
@@ -46,6 +47,7 @@ export const authRepository = {
       console.log("成功")
     } catch (error) {
       alert('サインアウトに失敗しました。');
+      window.location.reload();
     }
   },
 
