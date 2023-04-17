@@ -27,18 +27,17 @@ export const SignIn: React.FC = (): JSX.Element => {
   const onSubmit = ({email, password}: FormData) => {
     authRepository.signInWithEmail(email, password)
       .then(result => {
-        setIsOpen(true)
-        setModalMessage(result?.message!)
-        setColor(result?.success!);
+        if(result) {
+          setIsOpen(true)
+          setModalMessage(result.message)
+          setColor(result.success);
 
-        setTimeout(() => {
-          setIsOpen(false)
-          if(result?.success) {
+          setTimeout(() => {
+            setIsOpen(false)
+            if (!result.success) return window.location.reload();
             router.push("/homeScreen")
-          } else {
-            window.location.reload();
-          }
-        }, 2000)
+          }, 2000)
+        }
       })
 
   };
