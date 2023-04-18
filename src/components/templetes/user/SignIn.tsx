@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { AuthButton } from "../../atoms/AuthButton";
 import Link from "next/link";
 import Image from "next/image";
-import { EmailPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
+import { EmailAndPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
 import { useState } from "react";
 import { SuccessOrFailureModal } from "@/components/organisms/SuccessOrFailureModal";
 
@@ -84,7 +84,7 @@ export const SignIn: React.FC = (): JSX.Element => {
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <EmailPasswordForm
+        <EmailAndPasswordForm
           onSubmit={onSubmit}
           buttonText="ログイン"
         />

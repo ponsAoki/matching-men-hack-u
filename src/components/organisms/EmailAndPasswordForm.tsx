@@ -5,7 +5,7 @@ type Props = {
   onSubmit :(data: any) => void;
   buttonText: string
 }
-export const EmailPasswordForm: React.FC<Props> = ({ onSubmit, buttonText }):JSX.Element => {
+export const EmailAndPasswordForm: React.FC<Props> = ({ onSubmit, buttonText }):JSX.Element => {
 
   const { handleSubmit, register, formState: {errors}} = useForm()
   return (

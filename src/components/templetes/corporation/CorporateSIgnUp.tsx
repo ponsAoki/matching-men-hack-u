@@ -1,15 +1,15 @@
 import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
-import { AuthInput } from "@/components/atoms/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { EmailAndPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
 
 export const CorporateSignUp = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
 
   const onClick = (data: any) => {
+    //ここは
     authRepository.signUpWithEmail(data.email, data.password)
       .then(() => router.push('/corporation/inputInfo'));
   };
@@ -27,26 +27,10 @@ export const CorporateSignUp = () => {
         <div className="flex justify-center">
           <div className="border-t w-full border-black"></div>
         </div>
-
-        <form className="flex-col" onSubmit={handleSubmit(onClick)}>
-        <AuthInput
-            labelText="メールアドレス"
-            placeholder="example@gmail.com"
-            buttonType="email"
-            register={register}
-            registerLabel="email"
-          />
-          <AuthInput
-            labelText="パスワード"
-            placeholder="More than 10 letters"
-            buttonType="password"
-            register={register}
-            registerLabel="password"
-          />
-          <div className="flex justify-center mt-10">
-            <button type="submit" className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center">アカウントを作る</button>
-          </div>
-        </form>
+        <EmailAndPasswordForm
+          onSubmit={onClick}
+          buttonText="アカウントを作る"
+        />
         <div className="flex justify-center">
           <p>アカウントをお持ちの企業様　</p>
           <Link href="/corporation/corporateSignIn" className="font-bold">
