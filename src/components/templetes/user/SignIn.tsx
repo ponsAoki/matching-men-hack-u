@@ -1,22 +1,45 @@
 import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { AuthButton } from "../../atoms/AuthButton";
-import { AuthInput } from "../../atoms/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
+import { EmailAndPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
+import { useState } from "react";
+import { SuccessOrFailureModal } from "@/components/organisms/SuccessOrFailureModal";
+
+type FormData = {
+  email: string;
+  password: string;
+}
 
 export const SignIn: React.FC = (): JSX.Element => {
-  const router = useRouter();
-  const { register, handleSubmit } = useForm()
 
-  //react-hook-formに変更する
-  const onSubmit = (data: any) => {
-    console.log(data.email)
-    authRepository
-      .signInWithEmail(data.email, data.password)
-      .then(() => router.push("/homeScreen"));
+  const router = useRouter();
+
+  //モーダル関係
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMessage ,setModalMessage] = useState("");
+  const [color, setColor] = useState<boolean>();
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
+  const onSubmit = ({email, password}: FormData) => {
+    authRepository.signInWithEmail(email, password)
+      .then(result => {
+        if(result) {
+          setIsOpen(true)
+          setModalMessage(result.message)
+          setColor(result.success);
+
+          setTimeout(() => {
+            setIsOpen(false)
+            if (!result.success) return window.location.reload();
+            router.push("/homeScreen")
+          }, 2000)
+        }
+      })
+
   };
 
   return (
@@ -27,14 +50,25 @@ export const SignIn: React.FC = (): JSX.Element => {
             <AuthButton
               src="/home.png"
               onClick={() =>
-                authRepository.signInWithGoogle().then(() => router.push("/homeScreen"))
+                authRepository
+                  .signInWithGoogle()
+                  .then(() => {
+                    setIsOpen(true)
+                    setTimeout(() => {
+                      setIsOpen(false)
+                      router.push("/homeScreen")
+                    }, 2000)
+                  })
               }
             >
               Continue with Google
             </AuthButton>
             <AuthButton
               src="/github-mark.png"
-              onClick={authRepository.signWithGithub}
+              onClick={
+                authRepository.signWithGithub
+
+              }
             >
               Continue with GitHub
             </AuthButton>
@@ -50,30 +84,11 @@ export const SignIn: React.FC = (): JSX.Element => {
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <form className="flex-col" onSubmit={handleSubmit(onSubmit)}>
-          <AuthInput
-            labelText="メールアドレス"
-            placeholder="example@gmail.com"
-            buttonType="email"
-            register={register}
-            registerLabel="email"
-          />
-          <AuthInput
-            labelText="パスワード"
-            placeholder="More than 10 letters"
-            buttonType="password"
-            register={register}
-            registerLabel="password"
-          />
-          <div className="flex justify-center mt-10">
-            <button
-              type="submit"
-              className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center"
-            >
-              ログイン
-            </button>
-          </div>
-        </form>
+        <EmailAndPasswordForm
+          onSubmit={onSubmit}
+          buttonText="ログイン"
+        />
+
         <div className="flex justify-center">
           <p>まだアカウントをお持ちでない方　</p>
           <Link href="/signUp" className="font-bold">
@@ -81,6 +96,12 @@ export const SignIn: React.FC = (): JSX.Element => {
           </Link>
         </div>
       </div>
+      <SuccessOrFailureModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        modalMessage={modalMessage}
+        modalBgColor={color!}
+       />
     </div>
   );
 };

@@ -3,11 +3,12 @@ import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider,
 
 export const authRepository = {
   //メールでの認証
-  async signInWithEmail(email: string, password: string): Promise<void> {
+  async signInWithEmail(email: string, password: string): Promise<{success: boolean, message: string} | undefined> {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      return { success: true, message: "ログインに成功しました。"}
     } catch (error) {
-      alert('サインイン認証に失敗しました。')
+      return {success: false, message: "失敗しました。再度お試しください。"}
     }
   },
 
@@ -17,6 +18,7 @@ export const authRepository = {
       await signInWithPopup(auth, provider)
     } catch (error) {
       alert("google認証に失敗しました")
+      window.location.reload();
     }
   },
 
@@ -26,6 +28,7 @@ export const authRepository = {
       await signInWithPopup(auth, provider)
     } catch (error) {
       alert("GitHub認証に失敗しました")
+      window.location.reload();
     }
   },
 
@@ -36,6 +39,7 @@ export const authRepository = {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       alert('ユーザー登録に失敗しました。')
+      window.location.reload();
     }
   },
 
@@ -46,6 +50,7 @@ export const authRepository = {
       console.log("成功")
     } catch (error) {
       alert('サインアウトに失敗しました。');
+      window.location.reload();
     }
   },
 

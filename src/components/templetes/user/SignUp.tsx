@@ -1,21 +1,20 @@
 import { authRepository } from "@/modules/auth/auth.repository";
 import { useRouter } from "next/router";
 import { AuthButton } from "../../atoms/AuthButton";
-import { AuthInput } from "../../atoms/AuthInput";
 import Link from "next/link";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
+import { EmailAndPasswordForm } from "@/components/organisms/EmailAndPasswordForm";
 
 export const SignUp = () => {
-  const router = useRouter();
-  const { register, handleSubmit} = useForm();
 
+  const router = useRouter();
   const onSubmit = (data: any) => {
     authRepository
       .signUpWithEmail(data.email, data.password)
-      .then(() => router.push("/profiles/otherThanTech"));
+      .then(() => router.push("/profiles/otherThanTech"))
+      .catch((error) => router.push("/signUp"))
+      ;
   };
-
 
   return (
     <div className="flex justify-center h-screen content-center">
@@ -25,7 +24,9 @@ export const SignUp = () => {
             <AuthButton
               src="/home.png"
               onClick={() =>
-                authRepository.signInWithGoogle().then(() => router.push("/profiles/otherThanTech"))
+                authRepository.signInWithGoogle()
+                .then(() => router.push("/profiles/otherThanTech"))
+                .catch((error) => router.push("/signUp"))
               }
             >
               Continue with Google
@@ -48,30 +49,11 @@ export const SignUp = () => {
         </div>
         <p className="font-caveat text-center text-xl font-light -mt-5">or</p>
 
-        <form className="flex-col" onSubmit={handleSubmit(onSubmit)}>
-          <AuthInput
-            labelText="メールアドレス"
-            placeholder="example@gmail.com"
-            buttonType="email"
-            register={register}
-            registerLabel="email"
-          />
-          <AuthInput
-            labelText="パスワード"
-            placeholder="More than 10 letters"
-            buttonType="password"
-            register={register}
-            registerLabel="password"
-          />
-          <div className="flex justify-center mt-10">
-            <button
-              type="submit"
-              className="w-80 h-14 p-3 bg-white rounded-xl font-bold mb-3 text-center"
-            >
-              アカウントを作る
-            </button>
-          </div>
-        </form>
+        <EmailAndPasswordForm
+          onSubmit={onSubmit}
+          buttonText="アカウントを作る"
+        />
+
         <div className="flex justify-center">
           <p>アカウントをお持ちの方はこちら　</p>
           <Link href="/signIn" className="font-bold">
@@ -88,5 +70,3 @@ export const SignUp = () => {
     </div>
   );
 };
-
-//SignUpとSignInも１つのコンポーネントにまとめる
