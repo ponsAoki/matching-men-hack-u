@@ -1,4 +1,5 @@
 import { AddCardButton } from "@/components/atoms/AddCardButton";
+import { NarrowSearch } from "@/components/organisms/NarrowSerch";
 import { useAuth } from "@/hooks/useAuth";
 import { authRepository } from "@/modules/auth/auth.repository";
 import Link from "next/link";
@@ -32,31 +33,11 @@ export const HomeScreen = () => {
 
   return (
     <>
-      <div className="mx-auto">
-        <header className="border-b border-black/20 w-full">
-          <div className="font-caveat mx-auto flex">
-            <div className="flex-1">
-              <Link className=" font-zen font-light text-2xl pl-20 inline-block my-2" href={""}>
-                募集一覧
-              </Link>
-            </div>
-            <div className="flex-1 border-l border-black/20 pl-12 items-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="rounded-md font-zen font-light text-xl  my-2 p-1 focus:bg-white/50 hover:bg-white/50"
-              >
-                upload product
-              </button>
-            </div>
-            <div className="flex-1 flex border-l border-black/20 ml-12 items-center">
-              <Search />
-            </div>
-            <div className="flex"></div>
-          </div>
-        </header>
-      </div>
-      <div className="py-6 sm:py-8 lg:py-12 ">
+      <NarrowSearch />
+      <div className="border-b w-full p-1"></div>
+      <RecruitList />
+
+      {/* <div className="py-6 sm:py-8 lg:py-12 ">
         <div className="mx-auto px-4 md:px-8">
           <div className="mb-10 flex items-end justify-between gap-4 mx-20">
             <h3 className=" font-zen font-regular text-1xl lg:text-3xl">
@@ -77,7 +58,7 @@ export const HomeScreen = () => {
         >
           ログアウト
         </button>
-      </div>
+      </div> */}
 
 
       <UploadProductModal
