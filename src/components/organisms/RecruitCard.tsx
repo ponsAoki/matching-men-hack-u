@@ -15,9 +15,6 @@ type RecruitCardProps = {
 export const RecruitCard = ({
   recruit,
   allRecruits,
-  children,
-  cardHeight = "h-100",
-  cardWidth,
   index,
 }: RecruitCardProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -25,41 +22,40 @@ export const RecruitCard = ({
 
   return (
     <div
-      className={`group relative mb-2 block ${cardHeight} ${cardWidth} border overflow-hidden rounded-3xl bg-white lg:mb-3`}
+      className={`group relative mb-2 h-96 border overflow-hidden rounded-xl  lg:mb-3 shadow-md`}
     >
-      {children}
-      <div className="flex justify-center">
-        <Image src="/avatar.gif" alt="" width={150} height={150} />
+      <div className="flex justify-center items-center h-2/5 bg-gradient-to-r from-recruite-card-bg to-pink-200">
+        <p className="text-4xl font-bold text-white">Hack U</p>
       </div>
-      <div className="flex justify-center ">
+      <div className="flex col">
+        {recruit.programing_skills?.map((skill: any, index: number) => (
+            <div
+              key={index}
+              className="flex justify-start line-clamp-1"
+            >
+              <span className="text-gray-500 inline-flex items-center gap-1.5 py-1 px-3 mx-3 mt-5 text-xs rounded-full border-2 border-gray-400 ">
+                {skill.value}
+              </span>
+            </div>
+          ))}
+      </div>
+      <div className="flex justify-center items-center h-1/3">
         <div className="flex flex-col">
-          <h3 className="font-zen font-regular text-1xl mx-10 line-clamp-1">
+          <h3 className="font-zen font-regular text-2xl mx-10 line-clamp-1 text-gray-500">
             {recruit.headline}
           </h3>
         </div>
       </div>
-      <div className="flex object-cover object-center mx-10">
-        {recruit.programing_skills?.map((skill: any, index: number) => (
-          <div
-            key={index}
-            className="flex flex-wrap justify-center line-clamp-1"
-          >
-            <span className="inline-flex items-center gap-1.5 py-1 px-2 mx-3 mt-5 text-xs rounded-full font-caveat bg-background-color ">
-              {skill.value}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-center mt-5">
+      {/* <div className="flex justify-center mt-5">
         <div className="flex flex-col">
           <p className="font-zen font-light mx-10 line-clamp-1">
             {recruit.recruitment_details}
           </p>
         </div>
-      </div>
-      <div className="flex justify-end mt-10 mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
+      </div> */}
+      <div className="flex justify-end mb-3 mr-3 object-cover object-center transition duration-200 group-hover:scale-95">
         <button
-          className="font-zen font-light px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent hover:bg-tertiary-color"
+          className="font-zen font-black text-green-800 px-2 py-2 rounded-lg focus:outline-none focus:border-transparent text-center bg-transparent"
           onClick={() => {
             setIsOpen(true);
             setKeptIndex(index);

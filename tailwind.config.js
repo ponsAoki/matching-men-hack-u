@@ -11,6 +11,7 @@ module.exports = {
         "highlight-color": "#ff8ba7",
         "secondary-color": "#ffc6c7",
         "tertiary-color": "#c3f0ca",
+        "recruite-card-bg": "rgba(10, 134, 0, 0.4)"
       },
       fontFamily: {
         "caveat": ["Caveat", "cursive"],
